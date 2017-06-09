@@ -1,6 +1,6 @@
 # LLRegex
 Regular expression library in swift, wrapping NSRegularExpression.
-Don't hesitate to try it on [playground](./LLRegex.playground).
+Don't hesitate to try out on [playground](./LLRegex.playground.zip).
 
 ## Features
  * Value Sematics
