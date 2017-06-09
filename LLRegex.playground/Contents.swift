@@ -1,6 +1,6 @@
 /*:
  # LLRegex
- Swifty regular expression framework wrapping NSRegularExpression.
+ Regular expression library in swift, wrapping NSRegularExpression.
  ## Features
  * Value Sematics
  * Enumerates matches with Sequence
@@ -47,7 +47,7 @@ for case let match in subrangeMatches.dropFirst(1) where match.matched != "6789"
 }
 
 /*:
-- Important: Every match is ignored, if its range is unable to be converted to `Range<String.Index>`. Try searching "\r" in "\r\n".
+- Important: If the matched range is unable to be converted to `Range<String.Index>`, the match is ignored . Try searching "\r" in "\r\n".
  */
 
 /*:
@@ -61,7 +61,7 @@ if let first = numbers.matches(in: s).first {
     first.groups[1].matched
     first.groups[1].range
     
-    let replacement = first.replacement(withTemplate: "$3$2$1")     // Replcament with template
+    let replacement = first.replacement(withTemplate: "$3$2$1")     // Replacement with template
 }
 
 /*:
@@ -72,7 +72,7 @@ numbers.replacingFirstMatch(in: s, replacement: .remove)
 numbers.replacingAllMatches(in: s, range: subrange, replacement: .replaceWithTemplate("$3$2$1"))
 
 /*:
- Flexible Find & Replace is offerred by `replacingMatches(in:options:range:replacing)`.
+ Flexible Find & Replace is offered by `replacingMatches(in:options:range:replacing)`.
  */
 numbers.replacingMatches(in: s) { (idx, match) -> Match.Replacing in
     
@@ -95,7 +95,7 @@ numbers.replacingMatches(in: s) { (idx, match) -> Match.Replacing in
  */
 "123".isMatching("\\d+")
 "llregex".isMatching(insensitive)   // Regex is accepted
-"123-456".isMatching("\\d+")    // isMatching(_:) checks whether matched entirely
+"123-456".isMatching("\\d+")    // isMatching(_:) checks whether matches entirely
 
 
 /*:
