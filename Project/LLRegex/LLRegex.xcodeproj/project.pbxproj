@@ -35,6 +35,12 @@
 		9D76573B1EEC4F8F00016136 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07B1EEAB49D009CAE13 /* EmptyStringRegexTests.swift */; };
 		9D76573C1EEC4F8F00016136 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07D1EEAB49D009CAE13 /* ReturnRegexTests.swift */; };
 		9D76573D1EEC4F8F00016136 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07F1EEAB49D009CAE13 /* WordBRegexTests.swift */; };
+		9D76574B1EEC50FF00016136 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D76574C1EEC510A00016136 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0711EEAB47F009CAE13 /* Regex.swift */; };
+		9D76574D1EEC510A00016136 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D06F1EEAB47F009CAE13 /* Match.swift */; };
+		9D76574E1EEC510A00016136 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0721EEAB47F009CAE13 /* String+Regex.swift */; };
+		9D76574F1EEC510A00016136 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0701EEAB47F009CAE13 /* Range+Util.swift */; };
+		9D7657501EEC510A00016136 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0731EEAB47F009CAE13 /* String+Util.swift */; };
 		9DD5D05F1EEAB3EB009CAE13 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */; };
 		9DD5D0641EEAB3EB009CAE13 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0631EEAB3EB009CAE13 /* LLRegexTests.swift */; };
 		9DD5D0661EEAB3EB009CAE13 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +86,7 @@
 		9D7656DB1EEBF1D100016136 /* LLRegex macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D76571A1EEC4E8000016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7657221EEC4E8000016136 /* LLRegex tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D7657431EEC509A00016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRegex.h; sourceTree = "<group>"; };
 		9DD5D0591EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +137,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9D76573F1EEC509A00016136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DD5D0511EEAB3EB009CAE13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,6 +180,7 @@
 				9D7656DB1EEBF1D100016136 /* LLRegex macOS Tests.xctest */,
 				9D76571A1EEC4E8000016136 /* LLRegex.framework */,
 				9D7657221EEC4E8000016136 /* LLRegex tvOS Tests.xctest */,
+				9D7657431EEC509A00016136 /* LLRegex.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,6 +238,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D7657361EEC4F7B00016136 /* LLRegex.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7657401EEC509A00016136 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D76574B1EEC50FF00016136 /* LLRegex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +332,24 @@
 			productReference = 9D7657221EEC4E8000016136 /* LLRegex tvOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9D7657421EEC509A00016136 /* LLRegex watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D7657481EEC509A00016136 /* Build configuration list for PBXNativeTarget "LLRegex watchOS" */;
+			buildPhases = (
+				9D76573E1EEC509A00016136 /* Sources */,
+				9D76573F1EEC509A00016136 /* Frameworks */,
+				9D7657401EEC509A00016136 /* Headers */,
+				9D7657411EEC509A00016136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LLRegex watchOS";
+			productName = "LLRegex watchOS";
+			productReference = 9D7657431EEC509A00016136 /* LLRegex.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		9DD5D0541EEAB3EB009CAE13 /* LLRegex iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9DD5D0691EEAB3EB009CAE13 /* Build configuration list for PBXNativeTarget "LLRegex iOS" */;
@@ -372,6 +413,10 @@
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
 					};
+					9D7657421EEC509A00016136 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Manual;
+					};
 					9DD5D0541EEAB3EB009CAE13 = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
@@ -401,6 +446,7 @@
 				9D7656DA1EEBF1D100016136 /* LLRegex macOS Tests */,
 				9D7657191EEC4E8000016136 /* LLRegex tvOS */,
 				9D7657211EEC4E8000016136 /* LLRegex tvOS Tests */,
+				9D7657421EEC509A00016136 /* LLRegex watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -428,6 +474,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9D7657201EEC4E8000016136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7657411EEC509A00016136 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -500,6 +553,18 @@
 				9D76573B1EEC4F8F00016136 /* EmptyStringRegexTests.swift in Sources */,
 				9D76573C1EEC4F8F00016136 /* ReturnRegexTests.swift in Sources */,
 				9D76573D1EEC4F8F00016136 /* WordBRegexTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D76573E1EEC509A00016136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D76574C1EEC510A00016136 /* Regex.swift in Sources */,
+				9D76574D1EEC510A00016136 /* Match.swift in Sources */,
+				9D76574E1EEC510A00016136 /* String+Regex.swift in Sources */,
+				9D76574F1EEC510A00016136 /* Range+Util.swift in Sources */,
+				9D7657501EEC510A00016136 /* String+Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +709,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
 				PRODUCT_NAME = LLRegex;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -666,6 +732,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
 				PRODUCT_NAME = LLRegex;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -701,6 +768,54 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		9D7657491EEC509A00016136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
+				PRODUCT_NAME = LLRegex;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		9D76574A1EEC509A00016136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
+				PRODUCT_NAME = LLRegex;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -912,6 +1027,14 @@
 			buildConfigurations = (
 				9D76572D1EEC4E8000016136 /* Debug */,
 				9D76572E1EEC4E8000016136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9D7657481EEC509A00016136 /* Build configuration list for PBXNativeTarget "LLRegex watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D7657491EEC509A00016136 /* Debug */,
+				9D76574A1EEC509A00016136 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
