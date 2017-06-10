@@ -94,8 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */,
-				9DD5D06F1EEAB47F009CAE13 /* Match.swift */,
 				9DD5D0711EEAB47F009CAE13 /* Regex.swift */,
+				9DD5D06F1EEAB47F009CAE13 /* Match.swift */,
 				9DD5D0721EEAB47F009CAE13 /* String+Regex.swift */,
 				9DD5D0791EEAB484009CAE13 /* Utility */,
 				9DD5D0591EEAB3EB009CAE13 /* Info.plist */,
@@ -106,13 +106,13 @@
 		9DD5D0621EEAB3EB009CAE13 /* LLRegexTests */ = {
 			isa = PBXGroup;
 			children = (
+				9DD5D0631EEAB3EB009CAE13 /* LLRegexTests.swift */,
+				9DD5D07E1EEAB49D009CAE13 /* StringRegexTests.swift */,
+				9DD5D07C1EEAB49D009CAE13 /* RegexTests.swift */,
 				9DD5D07A1EEAB49D009CAE13 /* EmptyPatternRegexTests.swift */,
 				9DD5D07B1EEAB49D009CAE13 /* EmptyStringRegexTests.swift */,
-				9DD5D07C1EEAB49D009CAE13 /* RegexTests.swift */,
 				9DD5D07D1EEAB49D009CAE13 /* ReturnRegexTests.swift */,
-				9DD5D07E1EEAB49D009CAE13 /* StringRegexTests.swift */,
 				9DD5D07F1EEAB49D009CAE13 /* WordBRegexTests.swift */,
-				9DD5D0631EEAB3EB009CAE13 /* LLRegexTests.swift */,
 				9DD5D0651EEAB3EB009CAE13 /* Info.plist */,
 			);
 			path = LLRegexTests;

@@ -19,8 +19,8 @@ class LLRegexTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        tmRegex = Regex("((\\S)(\\S*)(\\S))™")!
-        zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])!
+        tmRegex = Regex("((\\S)(\\S*)(\\S))™")
+        zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])
     }
     
     override func tearDown() {
@@ -135,10 +135,10 @@ class LLRegexTests: XCTestCase {
     
     func testRegex() {
     
-        let regex1 = Regex("\\d+")!
-        let regex2 = Regex("\\d+")!
-        let regex3 = Regex("\\d+", options: [.caseInsensitive])!
-        let regex4 = Regex("\\D+", options: [.caseInsensitive])!
+        let regex1 = Regex("\\d+")
+        let regex2 = Regex("\\d+")
+        let regex3 = Regex("\\d+", options: [.caseInsensitive])
+        let regex4 = Regex("\\D+", options: [.caseInsensitive])
         
         XCTAssertEqual(regex1, regex2)
         XCTAssertNotEqual(regex1, regex3)
@@ -148,6 +148,7 @@ class LLRegexTests: XCTestCase {
         XCTAssertNotEqual(regex1.hashValue, regex3.hashValue)
         XCTAssertNotEqual(regex3.hashValue, regex4.hashValue)
         
-        XCTAssertNil(Regex("(\\d"))
+        XCTAssertNil(try? Regex(pattern: "(\\d"))
+        XCTAssertNotNil(try? Regex(pattern: "()"))
     }
 }
