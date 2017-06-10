@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Rock Young. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for LLRegex.
 FOUNDATION_EXPORT double LLRegexVersionNumber;

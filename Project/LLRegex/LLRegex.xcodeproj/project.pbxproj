@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D7656DC1EEBF1D100016136 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7656D31EEBF1D000016136 /* LLRegex.framework */; };
+		9D7656EA1EEBF2E700016136 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D7656EB1EEBF30400016136 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D06F1EEAB47F009CAE13 /* Match.swift */; };
+		9D7656EC1EEBF30400016136 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0711EEAB47F009CAE13 /* Regex.swift */; };
+		9D7656ED1EEBF30400016136 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0721EEAB47F009CAE13 /* String+Regex.swift */; };
+		9D7656EE1EEBF30400016136 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0701EEAB47F009CAE13 /* Range+Util.swift */; };
+		9D7656EF1EEBF30400016136 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0731EEAB47F009CAE13 /* String+Util.swift */; };
+		9D7656F01EEBF3CD00016136 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07A1EEAB49D009CAE13 /* EmptyPatternRegexTests.swift */; };
+		9D7656F11EEBF3CD00016136 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07B1EEAB49D009CAE13 /* EmptyStringRegexTests.swift */; };
+		9D7656F21EEBF3CD00016136 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07C1EEAB49D009CAE13 /* RegexTests.swift */; };
+		9D7656F31EEBF3CD00016136 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07D1EEAB49D009CAE13 /* ReturnRegexTests.swift */; };
+		9D7656F41EEBF3CD00016136 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07E1EEAB49D009CAE13 /* StringRegexTests.swift */; };
+		9D7656F51EEBF3CD00016136 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D07F1EEAB49D009CAE13 /* WordBRegexTests.swift */; };
+		9D7656F61EEBF3CD00016136 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0631EEAB3EB009CAE13 /* LLRegexTests.swift */; };
 		9DD5D05F1EEAB3EB009CAE13 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */; };
 		9DD5D0641EEAB3EB009CAE13 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D0631EEAB3EB009CAE13 /* LLRegexTests.swift */; };
 		9DD5D0661EEAB3EB009CAE13 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9D7656DD1EEBF1D100016136 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DD5D04C1EEAB3EB009CAE13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D7656D21EEBF1D000016136;
+			remoteInfo = "LLRegex macOS";
+		};
 		9DD5D0601EEAB3EB009CAE13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9DD5D04C1EEAB3EB009CAE13 /* Project object */;
@@ -34,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D7656D31EEBF1D000016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D7656DB1EEBF1D100016136 /* LLRegex macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRegex.h; sourceTree = "<group>"; };
 		9DD5D0591EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +77,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9D7656CF1EEBF1D000016136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7656D81EEBF1D100016136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D7656DC1EEBF1D100016136 /* LLRegex.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DD5D0511EEAB3EB009CAE13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,6 +124,8 @@
 			children = (
 				9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */,
 				9DD5D05E1EEAB3EB009CAE13 /* LLRegexTests.xctest */,
+				9D7656D31EEBF1D000016136 /* LLRegex.framework */,
+				9D7656DB1EEBF1D100016136 /* LLRegex macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +170,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9D7656D01EEBF1D000016136 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D7656EA1EEBF2E700016136 /* LLRegex.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DD5D0521EEAB3EB009CAE13 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +189,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9D7656D21EEBF1D000016136 /* LLRegex macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D7656E81EEBF1D100016136 /* Build configuration list for PBXNativeTarget "LLRegex macOS" */;
+			buildPhases = (
+				9D7656CE1EEBF1D000016136 /* Sources */,
+				9D7656CF1EEBF1D000016136 /* Frameworks */,
+				9D7656D01EEBF1D000016136 /* Headers */,
+				9D7656D11EEBF1D000016136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LLRegex macOS";
+			productName = "LLRegex macOS";
+			productReference = 9D7656D31EEBF1D000016136 /* LLRegex.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9D7656DA1EEBF1D100016136 /* LLRegex macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D7656E91EEBF1D100016136 /* Build configuration list for PBXNativeTarget "LLRegex macOSTests" */;
+			buildPhases = (
+				9D7656D71EEBF1D100016136 /* Sources */,
+				9D7656D81EEBF1D100016136 /* Frameworks */,
+				9D7656D91EEBF1D100016136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9D7656DE1EEBF1D100016136 /* PBXTargetDependency */,
+			);
+			name = "LLRegex macOSTests";
+			productName = "LLRegex macOSTests";
+			productReference = 9D7656DB1EEBF1D100016136 /* LLRegex macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9DD5D0541EEAB3EB009CAE13 /* LLRegex */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9DD5D0691EEAB3EB009CAE13 /* Build configuration list for PBXNativeTarget "LLRegex" */;
@@ -187,6 +271,15 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Rock Young";
 				TargetAttributes = {
+					9D7656D21EEBF1D000016136 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Manual;
+					};
+					9D7656DA1EEBF1D100016136 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6F3LJ4NQ2D;
+						ProvisioningStyle = Automatic;
+					};
 					9DD5D0541EEAB3EB009CAE13 = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
@@ -194,8 +287,7 @@
 					};
 					9DD5D05D1EEAB3EB009CAE13 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 6F3LJ4NQ2D;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -213,11 +305,27 @@
 			targets = (
 				9DD5D0541EEAB3EB009CAE13 /* LLRegex */,
 				9DD5D05D1EEAB3EB009CAE13 /* LLRegexTests */,
+				9D7656D21EEBF1D000016136 /* LLRegex macOS */,
+				9D7656DA1EEBF1D100016136 /* LLRegex macOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9D7656D11EEBF1D000016136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7656D91EEBF1D100016136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DD5D0531EEAB3EB009CAE13 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +343,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9D7656CE1EEBF1D000016136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D7656EB1EEBF30400016136 /* Match.swift in Sources */,
+				9D7656EC1EEBF30400016136 /* Regex.swift in Sources */,
+				9D7656ED1EEBF30400016136 /* String+Regex.swift in Sources */,
+				9D7656EE1EEBF30400016136 /* Range+Util.swift in Sources */,
+				9D7656EF1EEBF30400016136 /* String+Util.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7656D71EEBF1D100016136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D7656F01EEBF3CD00016136 /* EmptyPatternRegexTests.swift in Sources */,
+				9D7656F11EEBF3CD00016136 /* EmptyStringRegexTests.swift in Sources */,
+				9D7656F21EEBF3CD00016136 /* RegexTests.swift in Sources */,
+				9D7656F31EEBF3CD00016136 /* ReturnRegexTests.swift in Sources */,
+				9D7656F41EEBF3CD00016136 /* StringRegexTests.swift in Sources */,
+				9D7656F51EEBF3CD00016136 /* WordBRegexTests.swift in Sources */,
+				9D7656F61EEBF3CD00016136 /* LLRegexTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DD5D0501EEAB3EB009CAE13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +398,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9D7656DE1EEBF1D100016136 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D7656D21EEBF1D000016136 /* LLRegex macOS */;
+			targetProxy = 9D7656DD1EEBF1D100016136 /* PBXContainerItemProxy */;
+		};
 		9DD5D0611EEAB3EB009CAE13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9DD5D0541EEAB3EB009CAE13 /* LLRegex */;
@@ -272,6 +411,88 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9D7656E41EEBF1D100016136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
+				PRODUCT_NAME = LLRegex;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9D7656E51EEBF1D100016136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/LLRegex/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegex;
+				PRODUCT_NAME = LLRegex;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		9D7656E61EEBF1D100016136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
+				INFOPLIST_FILE = LLRegexTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lal.LLRegex-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9D7656E71EEBF1D100016136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
+				INFOPLIST_FILE = LLRegexTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lal.LLRegex-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		9DD5D0671EEAB3EB009CAE13 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -422,11 +643,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -435,11 +657,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -447,6 +670,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9D7656E81EEBF1D100016136 /* Build configuration list for PBXNativeTarget "LLRegex macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D7656E41EEBF1D100016136 /* Debug */,
+				9D7656E51EEBF1D100016136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9D7656E91EEBF1D100016136 /* Build configuration list for PBXNativeTarget "LLRegex macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D7656E61EEBF1D100016136 /* Debug */,
+				9D7656E71EEBF1D100016136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9DD5D04F1EEAB3EB009CAE13 /* Build configuration list for PBXProject "LLRegex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
