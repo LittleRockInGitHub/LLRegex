@@ -18,16 +18,28 @@ public struct Regex {
     public var regularExpression: NSRegularExpression
     
     /**
-     Creates a `Regex` with pattern and options.
-     - parameter pattern: The regular expression pattern.
+     Creates a `Regex` with unchecked string literal and options. Runtime error is raised if the unchecked pattern is invalid.
+     - parameter uncheckedPattern: The unchecked regulare expression pattern.
      - parameter options: The regular expression options that are applied to the expression during matching. Empty options by default.
-     - returns: An instance with given pattern and options. Return nil if failed to create such regulare expression.
+     - returns: An instance with given pattern and options. Runtime error is raised if the unchecked pattern is invalid.
     */
-    public init?(_ pattern: String, options: Options = []) {
-        
-        guard let rg = try? NSRegularExpression(pattern: pattern, options: options) else { return nil }
-        
-        self.regularExpression = rg
+    public init(_ uncheckedPattern: StaticString, options: Options = []) {
+        do {
+            try self.init(pattern: uncheckedPattern.description, options: options)
+        } catch {
+            fatalError("Pattern \(uncheckedPattern) is invalid.")
+        }
+    }
+    
+    /**
+     Creates a `Regex` with pattern and options.
+     - parameter pattern: The regulare expression pattern.
+     - parameter options: The regular expression options that are applied to the expression during matching. Empty options by default.
+     - returns: An instance with given pattern and options.
+     - throws: An error if failed.
+     */
+    public init(pattern: String, options: Options = []) throws {
+        self.regularExpression = try NSRegularExpression(pattern: pattern, options: options)
     }
     
     /**
@@ -365,7 +377,7 @@ public protocol RegexConvertible {
 extension RegexConvertible {
 
     public var asRegex: Regex? {
-        return Regex(self.pattern, options: self.options)
+        return try? Regex(pattern: self.pattern, options: self.options)
     }
     
     public var options: Regex.Options { return [] }

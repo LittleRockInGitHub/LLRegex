@@ -21,7 +21,7 @@ extension String {
      */
     public func isMatching(_ pattern: RegexConvertible, entirely: Bool = true) -> Bool {
         
-        guard let regex = (entirely ? Regex("\\A(:?\(pattern.pattern))\\Z", options: pattern.options) : pattern.asRegex) else { return false }
+        guard let regex = (entirely ? try? Regex(pattern: "\\A(:?\(pattern.pattern))\\Z", options: pattern.options) : pattern.asRegex) else { return false }
         
         return regex.matches(in: self).first != nil
     }

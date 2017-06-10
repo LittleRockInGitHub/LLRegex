@@ -27,9 +27,9 @@ class StringRegexTests: XCTestCase {
         
         XCTAssertEqual(s.replacingFirst("zelda", with: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃$1\r\n Link™")
         XCTAssertEqual(s.replacingFirst(pattern: "(z)elda", withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
-        XCTAssertEqual(s.replacingFirst(pattern: Regex("(z)elda", options: [.caseInsensitive])!, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
+        XCTAssertEqual(s.replacingFirst(pattern: Regex("(z)elda", options: [.caseInsensitive]), withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
         
-        XCTAssertEqual(s.replacingFirst(pattern: Regex("(z)elda", options: [.caseInsensitive])!, in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
+        XCTAssertEqual(s.replacingFirst(pattern: Regex("(z)elda", options: [.caseInsensitive]), in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
         var result = s
         
@@ -41,12 +41,12 @@ class StringRegexTests: XCTestCase {
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
         result = s
-        result.replaceFirst(pattern: Regex("(z)elda", options: [.caseInsensitive])!, withTemplate: "$1")
+        result.replaceFirst(pattern: Regex("(z)elda", options: [.caseInsensitive]), withTemplate: "$1")
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
         
         
         result = s
-        result.replaceFirst(pattern: Regex("(z)elda", options: [.caseInsensitive])!, in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1")
+        result.replaceFirst(pattern: Regex("(z)elda", options: [.caseInsensitive]), in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1")
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
     }
     
@@ -54,9 +54,9 @@ class StringRegexTests: XCTestCase {
         
         XCTAssertEqual(s.replacingAll("zelda", with: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃$1\r\n Link™")
         XCTAssertEqual(s.replacingAll(pattern: "(z)elda", withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
-        XCTAssertEqual(s.replacingAll(pattern: Regex("(z)elda", options: [.caseInsensitive])!, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
+        XCTAssertEqual(s.replacingAll(pattern: Regex("(z)elda", options: [.caseInsensitive]), withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
-        XCTAssertEqual(s.replacingAll(pattern: Regex("(z)elda", options: [.caseInsensitive])!, in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
+        XCTAssertEqual(s.replacingAll(pattern: Regex("(z)elda", options: [.caseInsensitive]), in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1"), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
         var result = s
         
@@ -68,12 +68,12 @@ class StringRegexTests: XCTestCase {
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
         result = s
-        result.replaceAll(pattern: Regex("(z)elda", options: [.caseInsensitive])!, withTemplate: "$1")
+        result.replaceAll(pattern: Regex("(z)elda", options: [.caseInsensitive]), withTemplate: "$1")
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Z™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
         
         
         result = s
-        result.replaceAll(pattern: Regex("(z)elda", options: [.caseInsensitive])!, in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1")
+        result.replaceAll(pattern: Regex("(z)elda", options: [.caseInsensitive]), in: s.range(of: "Zelda™")!.upperBound..<s.endIndex, withTemplate: "$1")
         XCTAssertEqual(result, "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃z\r\n Link™")
     }
     
@@ -91,7 +91,7 @@ class StringRegexTests: XCTestCase {
         XCTAssertTrue("a1b".isMatching("a\\d+", entirely: false))
         XCTAssertFalse("1".isMatching("a\\d+", entirely: false))
         
-        let regex1 = Regex("a\\d+", options: [.caseInsensitive])!
+        let regex1 = Regex("a\\d+", options: [.caseInsensitive])
         
         XCTAssertTrue("a1".isMatching(regex1))
         XCTAssertTrue("A1".isMatching(regex1))
@@ -129,7 +129,7 @@ class StringRegexTests: XCTestCase {
         XCTAssertEqual("".split(seperator: ""), [])
         XCTAssertEqual("".split(seperator: "", omittingEmptyString: false), ["", ""])
         
-        let regex = Regex("\\d+")!
+        let regex = Regex("\\d+")
         
         XCTAssertEqual(s.split(seperator: regex), ["a", "b", "c"])
         XCTAssertEqual(s.split(seperator: regex, maxSplits: 0), ["0a12b234c34560"])
