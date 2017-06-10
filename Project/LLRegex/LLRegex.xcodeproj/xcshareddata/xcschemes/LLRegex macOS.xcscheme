@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9DD5D0541EEAB3EB009CAE13"
+               BlueprintIdentifier = "9D7656D21EEBF1D000016136"
                BuildableName = "LLRegex.framework"
-               BlueprintName = "LLRegex"
+               BlueprintName = "LLRegex macOS"
                ReferencedContainer = "container:LLRegex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9DD5D05D1EEAB3EB009CAE13"
-               BuildableName = "LLRegexTests.xctest"
-               BlueprintName = "LLRegexTests"
+               BlueprintIdentifier = "9D7656DA1EEBF1D100016136"
+               BuildableName = "LLRegex macOS Tests.xctest"
+               BlueprintName = "LLRegex macOS Tests"
                ReferencedContainer = "container:LLRegex.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9DD5D0541EEAB3EB009CAE13"
+            BlueprintIdentifier = "9D7656D21EEBF1D000016136"
             BuildableName = "LLRegex.framework"
-            BlueprintName = "LLRegex"
+            BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9DD5D0541EEAB3EB009CAE13"
+            BlueprintIdentifier = "9D7656D21EEBF1D000016136"
             BuildableName = "LLRegex.framework"
-            BlueprintName = "LLRegex"
+            BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9DD5D0541EEAB3EB009CAE13"
+            BlueprintIdentifier = "9D7656D21EEBF1D000016136"
             BuildableName = "LLRegex.framework"
-            BlueprintName = "LLRegex"
+            BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
