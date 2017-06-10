@@ -1,9 +1,9 @@
 # LLRegex
 Regular expression library in swift, wrapping NSRegularExpression.
-Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/LLRegex/blob/master/LLRegex.playground.zip).
+Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/LLRegex/blob/1.0.0/LLRegex.playground.zip).
 
 ## Features
- * Value Sematics
+ * Value Semantics
  * Enumerates matches with Sequence
  * Range supported (NSRange eliminated)
  * Regex Options, Match Options
@@ -21,7 +21,7 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ### CocoaPods
 
 ```ruby
-	pod 'LLRegex', '~> 1.0'
+pod 'LLRegex', '~> 1.0'
 ```
 
 ## Usage
@@ -29,11 +29,13 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ### Making a Regex  
 
 ```swift
-let numbers = Regex("(\\d)(\\d+)(\\d)")!
+let numbers = Regex("(\\d)(\\d+)(\\d)")
 
-let insensitive = Regex("LLRegex", options: [.caseInsensitive])!
+let insensitive = Regex("LLRegex", options: [.caseInsensitive])
 
-let invalid = Regex("")     // Failed
+let runtimeError = Regex("")    // Runtime error would be raised
+
+let invalid = try? Regex(pattern: "")   // nil returned
 ```
 
 ### Searching
@@ -87,7 +89,7 @@ numbers.replacingFirstMatch(in: s, replacement: .remove)
 numbers.replacingAllMatches(in: s, range: subrange, replacement: .replaceWithTemplate("$3$2$1"))
 ```
 
-Flexible Find & Replace is offered by `replacingMatches(in:options:range:replacing)`.
+Flexible Find & Replace is offered by `replacingMatches(in:options:range:replacing:)`.
 
 ```swift  
 numbers.replacingMatches(in: s) { (idx, match) -> Match.Replacing in
