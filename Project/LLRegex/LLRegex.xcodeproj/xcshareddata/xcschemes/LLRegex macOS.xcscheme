@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D7656D21EEBF1D000016136"
-               BuildableName = "LLRegex macOS.framework"
+               BuildableName = "LLRegex.framework"
                BlueprintName = "LLRegex macOS"
                ReferencedContainer = "container:LLRegex.xcodeproj">
             </BuildableReference>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D7656DA1EEBF1D100016136"
-               BuildableName = "LLRegex macOSTests.xctest"
-               BlueprintName = "LLRegex macOSTests"
+               BuildableName = "LLRegex macOS Tests.xctest"
+               BlueprintName = "LLRegex macOS Tests"
                ReferencedContainer = "container:LLRegex.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D7656D21EEBF1D000016136"
-            BuildableName = "LLRegex macOS.framework"
+            BuildableName = "LLRegex.framework"
             BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D7656D21EEBF1D000016136"
-            BuildableName = "LLRegex macOS.framework"
+            BuildableName = "LLRegex.framework"
             BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D7656D21EEBF1D000016136"
-            BuildableName = "LLRegex macOS.framework"
+            BuildableName = "LLRegex.framework"
             BlueprintName = "LLRegex macOS"
             ReferencedContainer = "container:LLRegex.xcodeproj">
          </BuildableReference>
