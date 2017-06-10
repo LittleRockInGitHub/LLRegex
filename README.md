@@ -1,6 +1,6 @@
 # LLRegex
 Regular expression library in swift, wrapping NSRegularExpression.
-Don't hesitate to try out on [playground](./LLRegex.playground.zip).
+Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/LLRegex/blob/master/LLRegex.playground.zip).
 
 ## Features
  * Value Sematics
@@ -9,6 +9,20 @@ Don't hesitate to try out on [playground](./LLRegex.playground.zip).
  * Regex Options, Match Options
  * Find & Replace with flexibility
  * String matching, replacing, splitting
+ 
+## Requirements
+
+- iOS 8.0+
+- Xcode 8.1+
+- Swift 3.0+
+
+## Installation
+
+### CocoaPods
+
+```ruby
+	pod 'LLRegex', '~> 1.0'
+```
 
 ## Usage
 
