@@ -1,4 +1,18 @@
 language: objective-c
 osx_image: xcode8.3
-xcode_project: Project/LLRegex.xcodeproj
-xcode_scheme: "LLRegex iOS"
+
+env:
+    global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
+    - PROJECT="Project/LLRegex.xcodeproj"
+    - IOS_FRAMEWORK_SCHEME="LLRegex iOS"
+    - MACOS_FRAMEWORK_SCHEME="LLRegex macOS"
+    - TVOS_FRAMEWORK_SCHEME="LLRegex tvOS"
+    - WATCHOS_FRAMEWORK_SCHEME="LLRegex watchOS"
+    matrix:
+    - DESTINATION="OS=10.3,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"
+script:
+    - xcodebuild -version
+    - xcodebuild -showsdks
+    - xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
