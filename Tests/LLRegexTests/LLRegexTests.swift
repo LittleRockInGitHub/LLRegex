@@ -151,4 +151,31 @@ class LLRegexTests: XCTestCase {
         XCTAssertNil(try? Regex(pattern: "(\\d"))
         XCTAssertNotNil(try? Regex(pattern: "()"))
     }
+    
+    func testRegexPerformance() {
+        let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
+        
+        let pattern: String = "^\\s*0x([A-F0-9]+) - \\s*0x([A-F0-9]+) \\s*\\+?(.+?) .*? \\<([A-F0-9]{8}-?[A-F0-9]{4}-?[A-F0-9]{4}-?[A-F0-9]{4}-?[A-F0-9]{12})\\>"
+        
+        let regex: Regex = try! Regex(pattern: pattern, options: [.caseInsensitive, .anchorsMatchLines])
+        let nsRegex: NSRegularExpression = try! NSRegularExpression(pattern: pattern, options: [NSRegularExpression.Options.caseInsensitive, NSRegularExpression.Options.anchorsMatchLines])
+        
+        var date: Date
+        var match: [String] = []
+        
+        date = Date()
+        match = regex.matches(in: content).all.map { $0.groups[1].matched! }
+        let interval1 = Date().timeIntervalSince(date)
+        Swift.print("regex: ", interval1)
+        Swift.print(match.count)
+        
+        date = Date()
+        let nsContent: NSString = content as NSString
+        match = nsRegex.matches(in: content, range: NSRange(0..<nsContent.length)).map({ nsContent.substring(with: $0.rangeAt(1)) as String })
+        let interval2 = Date().timeIntervalSince(date)
+        Swift.print("nsRegex: ", interval2)
+        Swift.print(match.count)
+        
+        XCTAssertLessThan(interval1, interval2 * 10)
+    }
 }
