@@ -1,5 +1,9 @@
 # LLRegex
-Regular expression library in swift, wrapping NSRegularExpression.
+
+[![Build Status](https://travis-ci.org/LittleRockInGitHub/LLRegex.svg?branch=master)](https://travis-ci.org/LittleRockInGitHub/LLRegex)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/LLRegex.svg)](https://img.shields.io/cocoapods/v/LLRegex.svg)
+
+Regular expression library in Swift, wrapping NSRegularExpression.
 Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/LLRegex/blob/master/LLRegex.playground.zip).
 
 ## Features
@@ -22,6 +26,14 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 
 ```ruby
 pod 'LLRegex', '~> 1.1'
+```
+
+### Swift Package Manager
+
+```swift
+dependencies: [
+    .Package(url: "https://github.com/LittleRockInGitHub/LLRegex.git", majorVersion: 1)
+]
 ```
 
 ## Usage
