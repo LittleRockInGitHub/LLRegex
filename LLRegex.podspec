@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LLRegex'
-  s.version          = '1.1.0'
+  s.version          = '1.1.1'
   s.summary          = 'Regular expression library in Swift, wrapping NSRegularExpression.'
   s.homepage         = 'https://github.com/LittleRockInGitHub/LLRegex'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'Project/LLRegex/LLRegex/*.swift'
+  s.source_files = 'Sources/*.swift'
 end
