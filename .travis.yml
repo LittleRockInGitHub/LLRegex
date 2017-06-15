@@ -1,5 +1,9 @@
 language: objective-c
 osx_image: xcode8.3
+branches:
+  only:
+    - master
+    - develop
 
 env:
     global:
