@@ -15,49 +15,49 @@
 		9D7657231EEC4E8000016136 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D76571A1EEC4E8000016136 /* LLRegex.framework */; };
 		9D7657361EEC4F7B00016136 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D76574B1EEC50FF00016136 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D9682951EF2A6C5004307E2 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682931EF2A6C5004307E2 /* Range+Util.swift */; };
+		9D9682961EF2A6C5004307E2 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682931EF2A6C5004307E2 /* Range+Util.swift */; };
+		9D9682971EF2A6C5004307E2 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682931EF2A6C5004307E2 /* Range+Util.swift */; };
+		9D9682981EF2A6C5004307E2 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682931EF2A6C5004307E2 /* Range+Util.swift */; };
+		9D9682991EF2A6C5004307E2 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682941EF2A6C5004307E2 /* String+Util.swift */; };
+		9D96829A1EF2A6C5004307E2 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682941EF2A6C5004307E2 /* String+Util.swift */; };
+		9D96829B1EF2A6C5004307E2 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682941EF2A6C5004307E2 /* String+Util.swift */; };
+		9D96829C1EF2A6C5004307E2 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682941EF2A6C5004307E2 /* String+Util.swift */; };
+		9D9682A01EF2A6D4004307E2 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829D1EF2A6D4004307E2 /* Match.swift */; };
+		9D9682A11EF2A6D4004307E2 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829D1EF2A6D4004307E2 /* Match.swift */; };
+		9D9682A21EF2A6D4004307E2 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829D1EF2A6D4004307E2 /* Match.swift */; };
+		9D9682A31EF2A6D4004307E2 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829D1EF2A6D4004307E2 /* Match.swift */; };
+		9D9682A41EF2A6D4004307E2 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829E1EF2A6D4004307E2 /* Regex.swift */; };
+		9D9682A51EF2A6D4004307E2 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829E1EF2A6D4004307E2 /* Regex.swift */; };
+		9D9682A61EF2A6D4004307E2 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829E1EF2A6D4004307E2 /* Regex.swift */; };
+		9D9682A71EF2A6D4004307E2 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829E1EF2A6D4004307E2 /* Regex.swift */; };
+		9D9682A81EF2A6D4004307E2 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829F1EF2A6D4004307E2 /* String+Regex.swift */; };
+		9D9682A91EF2A6D4004307E2 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829F1EF2A6D4004307E2 /* String+Regex.swift */; };
+		9D9682AA1EF2A6D4004307E2 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829F1EF2A6D4004307E2 /* String+Regex.swift */; };
+		9D9682AB1EF2A6D4004307E2 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96829F1EF2A6D4004307E2 /* String+Regex.swift */; };
+		9D9682B31EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */; };
+		9D9682B41EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */; };
+		9D9682B51EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */; };
+		9D9682B61EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AD1EF2A726004307E2 /* EmptyStringRegexTests.swift */; };
+		9D9682B71EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AD1EF2A726004307E2 /* EmptyStringRegexTests.swift */; };
+		9D9682B81EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AD1EF2A726004307E2 /* EmptyStringRegexTests.swift */; };
+		9D9682B91EF2A726004307E2 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */; };
+		9D9682BA1EF2A726004307E2 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */; };
+		9D9682BB1EF2A726004307E2 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */; };
+		9D9682BC1EF2A726004307E2 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AF1EF2A726004307E2 /* RegexTests.swift */; };
+		9D9682BD1EF2A726004307E2 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AF1EF2A726004307E2 /* RegexTests.swift */; };
+		9D9682BE1EF2A726004307E2 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682AF1EF2A726004307E2 /* RegexTests.swift */; };
+		9D9682BF1EF2A726004307E2 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B01EF2A726004307E2 /* ReturnRegexTests.swift */; };
+		9D9682C01EF2A726004307E2 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B01EF2A726004307E2 /* ReturnRegexTests.swift */; };
+		9D9682C11EF2A726004307E2 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B01EF2A726004307E2 /* ReturnRegexTests.swift */; };
+		9D9682C21EF2A726004307E2 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B11EF2A726004307E2 /* StringRegexTests.swift */; };
+		9D9682C31EF2A726004307E2 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B11EF2A726004307E2 /* StringRegexTests.swift */; };
+		9D9682C41EF2A726004307E2 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B11EF2A726004307E2 /* StringRegexTests.swift */; };
+		9D9682C51EF2A726004307E2 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */; };
+		9D9682C61EF2A726004307E2 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */; };
+		9D9682C71EF2A726004307E2 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */; };
 		9DD5D05F1EEAB3EB009CAE13 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */; };
 		9DD5D0661EEAB3EB009CAE13 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DF71B441EEFD74D0049EF54 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B421EEFD74D0049EF54 /* Range+Util.swift */; };
-		9DF71B451EEFD74D0049EF54 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B431EEFD74D0049EF54 /* String+Util.swift */; };
-		9DF71B491EEFD75A0049EF54 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B461EEFD75A0049EF54 /* Match.swift */; };
-		9DF71B4A1EEFD75A0049EF54 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B471EEFD75A0049EF54 /* Regex.swift */; };
-		9DF71B4B1EEFD75A0049EF54 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B481EEFD75A0049EF54 /* String+Regex.swift */; };
-		9DF71B5C1EEFD7BE0049EF54 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */; };
-		9DF71B5D1EEFD7C70049EF54 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B471EEFD75A0049EF54 /* Regex.swift */; };
-		9DF71B5E1EEFD7C80049EF54 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B471EEFD75A0049EF54 /* Regex.swift */; };
-		9DF71B5F1EEFD7C90049EF54 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B471EEFD75A0049EF54 /* Regex.swift */; };
-		9DF71B601EEFD7CE0049EF54 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B461EEFD75A0049EF54 /* Match.swift */; };
-		9DF71B611EEFD7CF0049EF54 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B461EEFD75A0049EF54 /* Match.swift */; };
-		9DF71B621EEFD7D00049EF54 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B461EEFD75A0049EF54 /* Match.swift */; };
-		9DF71B631EEFD7D30049EF54 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B481EEFD75A0049EF54 /* String+Regex.swift */; };
-		9DF71B641EEFD7D40049EF54 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B481EEFD75A0049EF54 /* String+Regex.swift */; };
-		9DF71B651EEFD7D50049EF54 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B481EEFD75A0049EF54 /* String+Regex.swift */; };
-		9DF71B661EEFD7D90049EF54 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B421EEFD74D0049EF54 /* Range+Util.swift */; };
-		9DF71B671EEFD7DA0049EF54 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B421EEFD74D0049EF54 /* Range+Util.swift */; };
-		9DF71B681EEFD7DB0049EF54 /* Range+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B421EEFD74D0049EF54 /* Range+Util.swift */; };
-		9DF71B691EEFD7DF0049EF54 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B431EEFD74D0049EF54 /* String+Util.swift */; };
-		9DF71B6A1EEFD7DF0049EF54 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B431EEFD74D0049EF54 /* String+Util.swift */; };
-		9DF71B6B1EEFD7E00049EF54 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B431EEFD74D0049EF54 /* String+Util.swift */; };
-		9DF71B6C1EEFD7EA0049EF54 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B501EEFD7910049EF54 /* LLRegexTests.swift */; };
-		9DF71B6D1EEFD7EB0049EF54 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B501EEFD7910049EF54 /* LLRegexTests.swift */; };
-		9DF71B6E1EEFD7EB0049EF54 /* LLRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B501EEFD7910049EF54 /* LLRegexTests.swift */; };
-		9DF71B711EEFD7F10049EF54 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B531EEFD7910049EF54 /* StringRegexTests.swift */; };
-		9DF71B721EEFD7F10049EF54 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B511EEFD7910049EF54 /* RegexTests.swift */; };
-		9DF71B731EEFD7F10049EF54 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4E1EEFD7910049EF54 /* EmptyPatternRegexTests.swift */; };
-		9DF71B741EEFD7F10049EF54 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */; };
-		9DF71B751EEFD7F10049EF54 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */; };
-		9DF71B761EEFD7F20049EF54 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B531EEFD7910049EF54 /* StringRegexTests.swift */; };
-		9DF71B771EEFD7F20049EF54 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B511EEFD7910049EF54 /* RegexTests.swift */; };
-		9DF71B781EEFD7F20049EF54 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4E1EEFD7910049EF54 /* EmptyPatternRegexTests.swift */; };
-		9DF71B791EEFD7F20049EF54 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */; };
-		9DF71B7A1EEFD7F20049EF54 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */; };
-		9DF71B7B1EEFD7F20049EF54 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */; };
-		9DF71B7C1EEFD7F30049EF54 /* StringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B531EEFD7910049EF54 /* StringRegexTests.swift */; };
-		9DF71B7D1EEFD7F30049EF54 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B511EEFD7910049EF54 /* RegexTests.swift */; };
-		9DF71B7E1EEFD7F30049EF54 /* EmptyPatternRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4E1EEFD7910049EF54 /* EmptyPatternRegexTests.swift */; };
-		9DF71B7F1EEFD7F30049EF54 /* EmptyStringRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */; };
-		9DF71B801EEFD7F30049EF54 /* ReturnRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */; };
-		9DF71B811EEFD7F30049EF54 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,23 +91,23 @@
 		9D76571A1EEC4E8000016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7657221EEC4E8000016136 /* LLRegex tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7657431EEC509A00016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9682931EF2A6C5004307E2 /* Range+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Range+Util.swift"; path = "../../Sources/Range+Util.swift"; sourceTree = "<group>"; };
+		9D9682941EF2A6C5004307E2 /* String+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Util.swift"; path = "../../Sources/String+Util.swift"; sourceTree = "<group>"; };
+		9D96829D1EF2A6D4004307E2 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Match.swift; path = ../../Sources/Match.swift; sourceTree = "<group>"; };
+		9D96829E1EF2A6D4004307E2 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = ../../Sources/Regex.swift; sourceTree = "<group>"; };
+		9D96829F1EF2A6D4004307E2 /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Regex.swift"; path = "../../Sources/String+Regex.swift"; sourceTree = "<group>"; };
+		9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyPatternRegexTests.swift; path = ../../Tests/LLRegexTests/EmptyPatternRegexTests.swift; sourceTree = "<group>"; };
+		9D9682AD1EF2A726004307E2 /* EmptyStringRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyStringRegexTests.swift; path = ../../Tests/LLRegexTests/EmptyStringRegexTests.swift; sourceTree = "<group>"; };
+		9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLRegexTests.swift; path = ../../Tests/LLRegexTests/LLRegexTests.swift; sourceTree = "<group>"; };
+		9D9682AF1EF2A726004307E2 /* RegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegexTests.swift; path = ../../Tests/LLRegexTests/RegexTests.swift; sourceTree = "<group>"; };
+		9D9682B01EF2A726004307E2 /* ReturnRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReturnRegexTests.swift; path = ../../Tests/LLRegexTests/ReturnRegexTests.swift; sourceTree = "<group>"; };
+		9D9682B11EF2A726004307E2 /* StringRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringRegexTests.swift; path = ../../Tests/LLRegexTests/StringRegexTests.swift; sourceTree = "<group>"; };
+		9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordBRegexTests.swift; path = ../../Tests/LLRegexTests/WordBRegexTests.swift; sourceTree = "<group>"; };
 		9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRegex.h; sourceTree = "<group>"; };
 		9DD5D0591EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DD5D05E1EEAB3EB009CAE13 /* LLRegex iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0651EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DF71B421EEFD74D0049EF54 /* Range+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+Util.swift"; sourceTree = "<group>"; };
-		9DF71B431EEFD74D0049EF54 /* String+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Util.swift"; sourceTree = "<group>"; };
-		9DF71B461EEFD75A0049EF54 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		9DF71B471EEFD75A0049EF54 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
-		9DF71B481EEFD75A0049EF54 /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
-		9DF71B4E1EEFD7910049EF54 /* EmptyPatternRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyPatternRegexTests.swift; sourceTree = "<group>"; };
-		9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStringRegexTests.swift; sourceTree = "<group>"; };
-		9DF71B501EEFD7910049EF54 /* LLRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLRegexTests.swift; sourceTree = "<group>"; };
-		9DF71B511EEFD7910049EF54 /* RegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexTests.swift; sourceTree = "<group>"; };
-		9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnRegexTests.swift; sourceTree = "<group>"; };
-		9DF71B531EEFD7910049EF54 /* StringRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRegexTests.swift; sourceTree = "<group>"; };
-		9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordBRegexTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,9 +192,9 @@
 		9DD5D0571EEAB3EB009CAE13 /* LLRegex */ = {
 			isa = PBXGroup;
 			children = (
-				9DF71B471EEFD75A0049EF54 /* Regex.swift */,
-				9DF71B461EEFD75A0049EF54 /* Match.swift */,
-				9DF71B481EEFD75A0049EF54 /* String+Regex.swift */,
+				9D96829D1EF2A6D4004307E2 /* Match.swift */,
+				9D96829E1EF2A6D4004307E2 /* Regex.swift */,
+				9D96829F1EF2A6D4004307E2 /* String+Regex.swift */,
 				9DD5D0791EEAB484009CAE13 /* Utility */,
 				9DF71B4D1EEFD77D0049EF54 /* Supporting Files */,
 			);
@@ -204,13 +204,13 @@
 		9DD5D0621EEAB3EB009CAE13 /* LLRegexTests */ = {
 			isa = PBXGroup;
 			children = (
-				9DF71B501EEFD7910049EF54 /* LLRegexTests.swift */,
-				9DF71B531EEFD7910049EF54 /* StringRegexTests.swift */,
-				9DF71B511EEFD7910049EF54 /* RegexTests.swift */,
-				9DF71B4E1EEFD7910049EF54 /* EmptyPatternRegexTests.swift */,
-				9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */,
-				9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */,
-				9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */,
+				9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */,
+				9D9682B11EF2A726004307E2 /* StringRegexTests.swift */,
+				9D9682AF1EF2A726004307E2 /* RegexTests.swift */,
+				9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */,
+				9D9682AD1EF2A726004307E2 /* EmptyStringRegexTests.swift */,
+				9D9682B01EF2A726004307E2 /* ReturnRegexTests.swift */,
+				9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */,
 				9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */,
 				9DD5D0651EEAB3EB009CAE13 /* Info.plist */,
 			);
@@ -220,8 +220,8 @@
 		9DD5D0791EEAB484009CAE13 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				9DF71B421EEFD74D0049EF54 /* Range+Util.swift */,
-				9DF71B431EEFD74D0049EF54 /* String+Util.swift */,
+				9D9682931EF2A6C5004307E2 /* Range+Util.swift */,
+				9D9682941EF2A6C5004307E2 /* String+Util.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -411,23 +411,28 @@
 				TargetAttributes = {
 					9D7656D21EEBF1D000016136 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					9D7656DA1EEBF1D100016136 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 6F3LJ4NQ2D;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					9D7657191EEC4E8000016136 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					9D7657211EEC4E8000016136 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					9D7657421EEC509A00016136 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					9DD5D0541EEAB3EB009CAE13 = {
@@ -437,6 +442,7 @@
 					};
 					9DD5D05D1EEAB3EB009CAE13 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -524,11 +530,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B5D1EEFD7C70049EF54 /* Regex.swift in Sources */,
-				9DF71B661EEFD7D90049EF54 /* Range+Util.swift in Sources */,
-				9DF71B691EEFD7DF0049EF54 /* String+Util.swift in Sources */,
-				9DF71B601EEFD7CE0049EF54 /* Match.swift in Sources */,
-				9DF71B631EEFD7D30049EF54 /* String+Regex.swift in Sources */,
+				9D96829A1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9D9682A91EF2A6D4004307E2 /* String+Regex.swift in Sources */,
+				9D9682A51EF2A6D4004307E2 /* Regex.swift in Sources */,
+				9D9682961EF2A6C5004307E2 /* Range+Util.swift in Sources */,
+				9D9682A11EF2A6D4004307E2 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,13 +542,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B7B1EEFD7F20049EF54 /* WordBRegexTests.swift in Sources */,
-				9DF71B761EEFD7F20049EF54 /* StringRegexTests.swift in Sources */,
-				9DF71B7A1EEFD7F20049EF54 /* ReturnRegexTests.swift in Sources */,
-				9DF71B771EEFD7F20049EF54 /* RegexTests.swift in Sources */,
-				9DF71B791EEFD7F20049EF54 /* EmptyStringRegexTests.swift in Sources */,
-				9DF71B781EEFD7F20049EF54 /* EmptyPatternRegexTests.swift in Sources */,
-				9DF71B6D1EEFD7EB0049EF54 /* LLRegexTests.swift in Sources */,
+				9D9682C61EF2A726004307E2 /* WordBRegexTests.swift in Sources */,
+				9D9682BA1EF2A726004307E2 /* LLRegexTests.swift in Sources */,
+				9D9682BD1EF2A726004307E2 /* RegexTests.swift in Sources */,
+				9D9682B71EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9D9682B41EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
+				9D9682C31EF2A726004307E2 /* StringRegexTests.swift in Sources */,
+				9D9682C01EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,11 +556,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B5E1EEFD7C80049EF54 /* Regex.swift in Sources */,
-				9DF71B671EEFD7DA0049EF54 /* Range+Util.swift in Sources */,
-				9DF71B6A1EEFD7DF0049EF54 /* String+Util.swift in Sources */,
-				9DF71B611EEFD7CF0049EF54 /* Match.swift in Sources */,
-				9DF71B641EEFD7D40049EF54 /* String+Regex.swift in Sources */,
+				9D96829B1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9D9682AA1EF2A6D4004307E2 /* String+Regex.swift in Sources */,
+				9D9682A61EF2A6D4004307E2 /* Regex.swift in Sources */,
+				9D9682971EF2A6C5004307E2 /* Range+Util.swift in Sources */,
+				9D9682A21EF2A6D4004307E2 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,13 +568,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B811EEFD7F30049EF54 /* WordBRegexTests.swift in Sources */,
-				9DF71B7C1EEFD7F30049EF54 /* StringRegexTests.swift in Sources */,
-				9DF71B801EEFD7F30049EF54 /* ReturnRegexTests.swift in Sources */,
-				9DF71B7D1EEFD7F30049EF54 /* RegexTests.swift in Sources */,
-				9DF71B7F1EEFD7F30049EF54 /* EmptyStringRegexTests.swift in Sources */,
-				9DF71B7E1EEFD7F30049EF54 /* EmptyPatternRegexTests.swift in Sources */,
-				9DF71B6E1EEFD7EB0049EF54 /* LLRegexTests.swift in Sources */,
+				9D9682C71EF2A726004307E2 /* WordBRegexTests.swift in Sources */,
+				9D9682BB1EF2A726004307E2 /* LLRegexTests.swift in Sources */,
+				9D9682BE1EF2A726004307E2 /* RegexTests.swift in Sources */,
+				9D9682B81EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9D9682B51EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
+				9D9682C41EF2A726004307E2 /* StringRegexTests.swift in Sources */,
+				9D9682C11EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,11 +582,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B5F1EEFD7C90049EF54 /* Regex.swift in Sources */,
-				9DF71B681EEFD7DB0049EF54 /* Range+Util.swift in Sources */,
-				9DF71B6B1EEFD7E00049EF54 /* String+Util.swift in Sources */,
-				9DF71B621EEFD7D00049EF54 /* Match.swift in Sources */,
-				9DF71B651EEFD7D50049EF54 /* String+Regex.swift in Sources */,
+				9D96829C1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9D9682AB1EF2A6D4004307E2 /* String+Regex.swift in Sources */,
+				9D9682A71EF2A6D4004307E2 /* Regex.swift in Sources */,
+				9D9682981EF2A6C5004307E2 /* Range+Util.swift in Sources */,
+				9D9682A31EF2A6D4004307E2 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,11 +594,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B451EEFD74D0049EF54 /* String+Util.swift in Sources */,
-				9DF71B4B1EEFD75A0049EF54 /* String+Regex.swift in Sources */,
-				9DF71B4A1EEFD75A0049EF54 /* Regex.swift in Sources */,
-				9DF71B441EEFD74D0049EF54 /* Range+Util.swift in Sources */,
-				9DF71B491EEFD75A0049EF54 /* Match.swift in Sources */,
+				9D9682991EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9D9682A81EF2A6D4004307E2 /* String+Regex.swift in Sources */,
+				9D9682A41EF2A6D4004307E2 /* Regex.swift in Sources */,
+				9D9682951EF2A6C5004307E2 /* Range+Util.swift in Sources */,
+				9D9682A01EF2A6D4004307E2 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,13 +606,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF71B741EEFD7F10049EF54 /* EmptyStringRegexTests.swift in Sources */,
-				9DF71B5C1EEFD7BE0049EF54 /* WordBRegexTests.swift in Sources */,
-				9DF71B721EEFD7F10049EF54 /* RegexTests.swift in Sources */,
-				9DF71B711EEFD7F10049EF54 /* StringRegexTests.swift in Sources */,
-				9DF71B731EEFD7F10049EF54 /* EmptyPatternRegexTests.swift in Sources */,
-				9DF71B6C1EEFD7EA0049EF54 /* LLRegexTests.swift in Sources */,
-				9DF71B751EEFD7F10049EF54 /* ReturnRegexTests.swift in Sources */,
+				9D9682C51EF2A726004307E2 /* WordBRegexTests.swift in Sources */,
+				9D9682B91EF2A726004307E2 /* LLRegexTests.swift in Sources */,
+				9D9682BC1EF2A726004307E2 /* RegexTests.swift in Sources */,
+				9D9682B61EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9D9682B31EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
+				9D9682C21EF2A726004307E2 /* StringRegexTests.swift in Sources */,
+				9D9682BF1EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +640,7 @@
 		9D7656E41EEBF1D100016136 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -651,6 +658,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -658,6 +666,7 @@
 		9D7656E51EEBF1D100016136 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -683,6 +692,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
@@ -692,6 +702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lal.LLRegex-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -700,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6F3LJ4NQ2D;
@@ -716,6 +728,7 @@
 		9D76572B1EEC4E8000016136 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -730,6 +743,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -739,6 +753,7 @@
 		9D76572C1EEC4E8000016136 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -763,6 +778,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -770,6 +786,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -779,6 +796,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -795,6 +813,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -809,6 +828,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -819,6 +839,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -989,6 +1010,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
@@ -996,6 +1018,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lal.LLRegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1004,6 +1027,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLRegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -127,9 +127,12 @@ extension _RangeProtocol {
     }
 }
 
-extension NSRange : Equatable {
-
-    public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
-        return NSEqualRanges(lhs, rhs)
+#if swift(>=3.2)
+#else
+    extension NSRange : Equatable {
+        public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
+            return NSEqualRanges(lhs, rhs)
+        }
     }
-}
+#endif
+
