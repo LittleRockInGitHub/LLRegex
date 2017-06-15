@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D31D56D1EF285DF0002DDA0 /* LargeContent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */; };
+		9D31D56E1EF285DF0002DDA0 /* LargeContent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */; };
+		9D31D56F1EF285DF0002DDA0 /* LargeContent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */; };
 		9D7656DC1EEBF1D100016136 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7656D31EEBF1D000016136 /* LLRegex.framework */; };
 		9D7656EA1EEBF2E700016136 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D7657231EEC4E8000016136 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D76571A1EEC4E8000016136 /* LLRegex.framework */; };
@@ -82,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LargeContent.txt; sourceTree = "<group>"; };
 		9D7656D31EEBF1D000016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7656DB1EEBF1D100016136 /* LLRegex macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D76571A1EEC4E8000016136 /* LLRegex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LLRegex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +211,7 @@
 				9DF71B4F1EEFD7910049EF54 /* EmptyStringRegexTests.swift */,
 				9DF71B521EEFD7910049EF54 /* ReturnRegexTests.swift */,
 				9DF71B541EEFD7910049EF54 /* WordBRegexTests.swift */,
+				9D31D56C1EF285DF0002DDA0 /* LargeContent.txt */,
 				9DD5D0651EEAB3EB009CAE13 /* Info.plist */,
 			);
 			path = LLRegexTests;
@@ -471,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D31D56E1EF285DF0002DDA0 /* LargeContent.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D31D56F1EF285DF0002DDA0 /* LargeContent.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D31D56D1EF285DF0002DDA0 /* LargeContent.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
