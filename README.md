@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/LittleRockInGitHub/LLRegex.svg?branch=master)](https://travis-ci.org/LittleRockInGitHub/LLRegex)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/LLRegex.svg)](https://img.shields.io/cocoapods/v/LLRegex.svg)
+[![Platform](https://img.shields.io/cocoapods/p/LLRegex.svg)](https://img.shields.io/cocoapods/p/LLRegex.svg)
 
 Regular expression library in Swift, wrapping NSRegularExpression.
 Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/LLRegex/blob/master/LLRegex.playground.zip).
