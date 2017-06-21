@@ -58,6 +58,9 @@
 		9D9682C71EF2A726004307E2 /* WordBRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9682B21EF2A726004307E2 /* WordBRegexTests.swift */; };
 		9DD5D05F1EEAB3EB009CAE13 /* LLRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD5D0551EEAB3EB009CAE13 /* LLRegex.framework */; };
 		9DD5D0661EEAB3EB009CAE13 /* LLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD5D0581EEAB3EB009CAE13 /* LLRegex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DE5C8C11EFA85B500E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
+		9DE5C8C21EFA85B800E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
+		9DE5C8C31EFA85BA00E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +111,7 @@
 		9DD5D0591EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DD5D05E1EEAB3EB009CAE13 /* LLRegex iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0651EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedCaptureGroupsTests.swift; path = ../../Tests/LLRegexTests/NamedCaptureGroupsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				9D9682AE1EF2A726004307E2 /* LLRegexTests.swift */,
+				9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */,
 				9D9682B11EF2A726004307E2 /* StringRegexTests.swift */,
 				9D9682AF1EF2A726004307E2 /* RegexTests.swift */,
 				9D9682AC1EF2A726004307E2 /* EmptyPatternRegexTests.swift */,
@@ -546,6 +551,7 @@
 				9D9682BA1EF2A726004307E2 /* LLRegexTests.swift in Sources */,
 				9D9682BD1EF2A726004307E2 /* RegexTests.swift in Sources */,
 				9D9682B71EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9DE5C8C21EFA85B800E1914B /* NamedCaptureGroupsTests.swift in Sources */,
 				9D9682B41EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
 				9D9682C31EF2A726004307E2 /* StringRegexTests.swift in Sources */,
 				9D9682C01EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
@@ -572,6 +578,7 @@
 				9D9682BB1EF2A726004307E2 /* LLRegexTests.swift in Sources */,
 				9D9682BE1EF2A726004307E2 /* RegexTests.swift in Sources */,
 				9D9682B81EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9DE5C8C31EFA85BA00E1914B /* NamedCaptureGroupsTests.swift in Sources */,
 				9D9682B51EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
 				9D9682C41EF2A726004307E2 /* StringRegexTests.swift in Sources */,
 				9D9682C11EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
@@ -610,6 +617,7 @@
 				9D9682B91EF2A726004307E2 /* LLRegexTests.swift in Sources */,
 				9D9682BC1EF2A726004307E2 /* RegexTests.swift in Sources */,
 				9D9682B61EF2A726004307E2 /* EmptyStringRegexTests.swift in Sources */,
+				9DE5C8C11EFA85B500E1914B /* NamedCaptureGroupsTests.swift in Sources */,
 				9D9682B31EF2A726004307E2 /* EmptyPatternRegexTests.swift in Sources */,
 				9D9682C21EF2A726004307E2 /* StringRegexTests.swift in Sources */,
 				9D9682BF1EF2A726004307E2 /* ReturnRegexTests.swift in Sources */,
