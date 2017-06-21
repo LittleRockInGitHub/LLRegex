@@ -61,6 +61,7 @@
 		9DE5C8C11EFA85B500E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
 		9DE5C8C21EFA85B800E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
 		9DE5C8C31EFA85BA00E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
+		9DE5C8C51EFAD7FF00E1914B /* OptionSetAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		9DD5D05E1EEAB3EB009CAE13 /* LLRegex iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LLRegex iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD5D0651EEAB3EB009CAE13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedCaptureGroupsTests.swift; path = ../../Tests/LLRegexTests/NamedCaptureGroupsTests.swift; sourceTree = "<group>"; };
+		9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionSetAdapting.swift; path = ../../Sources/OptionSetAdapting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			children = (
 				9D9682931EF2A6C5004307E2 /* Range+Util.swift */,
 				9D9682941EF2A6C5004307E2 /* String+Util.swift */,
+				9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D9682991EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9DE5C8C51EFAD7FF00E1914B /* OptionSetAdapting.swift in Sources */,
 				9D9682A81EF2A6D4004307E2 /* String+Regex.swift in Sources */,
 				9D9682A41EF2A6D4004307E2 /* Regex.swift in Sources */,
 				9D9682951EF2A6C5004307E2 /* Range+Util.swift in Sources */,

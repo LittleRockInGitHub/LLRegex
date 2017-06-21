@@ -31,45 +31,16 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
     return reval
 }
 
-public protocol OptionSetAdopating: OptionSet {
-    
-    associatedtype Adopated: OptionSet
-    
-    static var reserved: RawValue { get }
-    
-    init(adopted options: Adopated)
-    
-    func toAdopated() -> Adopated
-}
-
-extension OptionSetAdopating where RawValue == Adopated.RawValue {
-
-    public init(adopted options: Adopated) {
-        self.init(rawValue: options.rawValue)
-    }
-}
-
-extension OptionSetAdopating where RawValue == Adopated.RawValue, RawValue == UInt {
-
-    public func toAdopated() -> Adopated {
-        let flag = (1 << Self.reserved) - 1
-        return Adopated.init(rawValue: rawValue & flag)
-    }
-    
-    public init(offsetFromReserved offset: UInt) {
-        self.init(rawValue: 1 << offset)
-    }
-}
 
 /// A type that is used to reprensent and apply regular expreesion to Unicode strings, which wrapps NSRegularExpression.
 public struct Regex {
     
     /// Options of Regex.
-    public struct Options: OptionSetAdopating {
+    public struct Options : OptionSetAdapting {
         
-        public typealias Adopated = NSRegularExpression.Options
+        typealias Adapted = NSRegularExpression.Options
         
-        public static let reserved: UInt = 16
+        private static let reserved: UInt = 16
     
         public let rawValue: UInt
         
@@ -77,21 +48,29 @@ public struct Regex {
             self.rawValue = rawValue
         }
         
-        public static let caseInsensitive = Options.init(adopted: .caseInsensitive)
-        public static let allowCommentsAndWhitespace = Options.init(adopted: .allowCommentsAndWhitespace)
-        public static let ignoreMetacharacters = Options.init(adopted: .ignoreMetacharacters)
-        public static let dotMatchesLineSeparators = Options.init(adopted: .dotMatchesLineSeparators)
-        public static let anchorsMatchLines = Options.init(adopted: .anchorsMatchLines)
-        public static let useUnixLineSeparators = Options.init(adopted: .useUnixLineSeparators)
-        public static let useUnicodeWordBoundaries = Options.init(adopted: .useUnicodeWordBoundaries)
-        public static let namedCaptureGroups = Options(offsetFromReserved: 0)
+        public static let caseInsensitive = Options(adapted: .caseInsensitive)
+        public static let allowCommentsAndWhitespace = Options(adapted: .allowCommentsAndWhitespace)
+        public static let ignoreMetacharacters = Options(adapted: .ignoreMetacharacters)
+        public static let dotMatchesLineSeparators = Options(adapted: .dotMatchesLineSeparators)
+        public static let anchorsMatchLines = Options(adapted: .anchorsMatchLines)
+        public static let useUnixLineSeparators = Options(adapted: .useUnixLineSeparators)
+        public static let useUnicodeWordBoundaries = Options(adapted: .useUnicodeWordBoundaries)
+        public static let namedCaptureGroups = Options(rawValue: 1 << reserved)
+        
+        static let adaptedOptions: NSRegularExpression.Options = [.caseInsensitive,
+                                                                  .allowCommentsAndWhitespace,
+                                                                  .ignoreMetacharacters,
+                                                                  .dotMatchesLineSeparators,
+                                                                  .anchorsMatchLines,
+                                                                  .useUnixLineSeparators,
+                                                                  .useUnicodeWordBoundaries]
         
     }
     
     /// Wrapped NSRegularExpression.
     public var regularExpression: NSRegularExpression {
         didSet {
-            _options = Options(adopted: regularExpression.options)
+            _options = Options(adapted: regularExpression.options)
         }
     }
     
@@ -117,7 +96,7 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        let re = try NSRegularExpression(pattern: pattern, options: options.toAdopated())
+        let re = try NSRegularExpression(pattern: pattern, options: options.toAdapted())
         self.regularExpression = re
         self._options = options
 //        self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
@@ -132,7 +111,7 @@ public struct Regex {
     
     public init(regularExpression: NSRegularExpression) {
         self.regularExpression = regularExpression
-        self._options = Options(adopted: regularExpression.options)
+        self._options = Options(adapted: regularExpression.options)
         self.namedCaptureGroupInfo = [:]
     }
     
@@ -227,7 +206,7 @@ extension Match {
             self.regex = regex
             self.searched = searched
             
-            self.options = options.toAdopated()
+            self.options = options.toAdapted()
             
             self.range = nsRange
             self.current = nsRange

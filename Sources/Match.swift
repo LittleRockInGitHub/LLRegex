@@ -37,11 +37,9 @@ extension MatchProtocol {
 public struct Match : MatchProtocol {
     
     /// Options for matching
-    public struct Options : OptionSetAdopating {
+    public struct Options : OptionSetAdapting {
         
-        public typealias Adopated = NSRegularExpression.MatchingOptions
-    
-        public static let reserved: UInt = 16
+        typealias Adopated = NSRegularExpression.MatchingOptions
         
         public let rawValue: UInt
         
@@ -49,11 +47,13 @@ public struct Match : MatchProtocol {
             self.rawValue = rawValue
         }
         
-        public static let anchored = Options.init(adopted: .anchored)
-        public static let withTransparentBounds = Options.init(adopted: .withTransparentBounds)
-        public static let withoutAnchoringBounds = Options.init(adopted: .withoutAnchoringBounds)
-        public static let reportCompletion = Options.init(adopted: .reportCompletion)
-        public static let reportProgress = Options.init(adopted: .reportProgress)
+        public static let anchored = Options(adapted: .anchored)
+        public static let withTransparentBounds = Options(adapted: .withTransparentBounds)
+        public static let withoutAnchoringBounds = Options(adapted: .withoutAnchoringBounds)
+        
+        static let adaptedOptions: NSRegularExpression.MatchingOptions = [.anchored,
+                                                                          .withTransparentBounds,
+                                                                          .withoutAnchoringBounds]
     }
     
     /// The searched string.

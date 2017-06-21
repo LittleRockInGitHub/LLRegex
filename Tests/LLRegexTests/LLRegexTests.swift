@@ -189,7 +189,7 @@ class LLRegexTests: XCTestCase {
         XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
             dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
         
-        XCTAssertEqual(regex.options.toAdopated(),  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+        XCTAssertEqual(regex.options.toAdapted(),  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
             dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
         
         try! regex.setPattern("\\d*")
@@ -211,13 +211,15 @@ class LLRegexTests: XCTestCase {
     
     func testMatchOptions() {
         
-        var options: Match.Options = [.reportProgress, .reportCompletion, .anchored, .withTransparentBounds, .withoutAnchoringBounds]
+        var options: Match.Options = [.anchored, .withTransparentBounds, .withoutAnchoringBounds]
         
-        XCTAssertEqual(options, [.reportProgress, .reportCompletion, .anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        XCTAssertEqual(options, [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
         
-        XCTAssertEqual(options.toAdopated(), [.reportProgress, .reportCompletion, .anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        XCTAssertEqual(options.toAdapted(), [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
         
         options = []
-        XCTAssertEqual(options.toAdopated(), [])
+        XCTAssertEqual(options.toAdapted(), [])
+        
+        XCTAssertEqual(options, Match.Options(adapted: [.reportProgress, .reportCompletion]))
     }
 }
