@@ -8,29 +8,6 @@
 
 import Foundation
 
-func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int] {
-    struct RE {
-        static let captureGroup: Regex = Regex("(\\\\*+)\\((?!\\?)")
-        static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
-    }
-    
-    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
-    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
-    
-    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount - 1 else { return [:] }
-    
-    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
-    
-    var reval = [String: Int]()
-    
-    for (idx, match) in allGroups.enumerated() {
-        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
-        reval[name] = idx + 1
-    }
-    
-    return reval
-}
-
 
 /// A type that is used to reprensent and apply regular expreesion to Unicode strings, which wrapps NSRegularExpression.
 public struct Regex {
@@ -96,11 +73,7 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        let re = try NSRegularExpression(pattern: pattern, options: options.toAdapted())
-        self.regularExpression = re
-        self._options = options
-//        self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
-        self.namedCaptureGroupInfo = [:]
+        self.init(regularExpression: try NSRegularExpression(pattern: pattern, options: options.toAdapted()), options: options)
     }
     
     /**
@@ -109,10 +82,15 @@ public struct Regex {
      - returns: An instance wrapping given NSRegularExpression.
      */
     
-    public init(regularExpression: NSRegularExpression) {
+    public init(regularExpression: NSRegularExpression, options: Regex.Options = []) {
         self.regularExpression = regularExpression
-        self._options = Options(adapted: regularExpression.options)
-        self.namedCaptureGroupInfo = [:]
+        self._options = options.exclusive().union(Options(adapted: regularExpression.options))
+        
+        if options.contains(.namedCaptureGroups) {
+            self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: regularExpression.pattern, expectedGroupsCount: regularExpression.numberOfCaptureGroups)
+        } else {
+            self.namedCaptureGroupInfo = [:]
+        }
     }
     
     
@@ -453,3 +431,29 @@ extension String : RegexConvertible {
     
     public var pattern: String { return "(?:\(self))" }
 }
+
+// MARK: NamedCaptureGroup
+
+func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int] {
+    struct RE {
+        static let captureGroup: Regex = Regex("(\\\\*+)\\((?!\\?)")
+        static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
+    }
+    
+    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    
+    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount - 1 else { return [:] }
+    
+    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
+    
+    var reval = [String: Int]()
+    
+    for (idx, match) in allGroups.enumerated() {
+        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
+        reval[name] = idx + 1
+    }
+    
+    return reval
+}
+

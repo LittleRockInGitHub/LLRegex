@@ -198,8 +198,8 @@
 		9DD5D0571EEAB3EB009CAE13 /* LLRegex */ = {
 			isa = PBXGroup;
 			children = (
-				9D96829D1EF2A6D4004307E2 /* Match.swift */,
 				9D96829E1EF2A6D4004307E2 /* Regex.swift */,
+				9D96829D1EF2A6D4004307E2 /* Match.swift */,
 				9D96829F1EF2A6D4004307E2 /* String+Regex.swift */,
 				9DD5D0791EEAB484009CAE13 /* Utility */,
 				9DF71B4D1EEFD77D0049EF54 /* Supporting Files */,

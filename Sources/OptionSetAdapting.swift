@@ -29,4 +29,8 @@ extension OptionSetAdapting where RawValue == Adapted.RawValue {
     func toAdapted() -> Adapted {
         return Adapted.init(rawValue: self.rawValue).intersection(Self.adaptedOptions)
     }
+    
+    func exclusive() -> Self {
+        return self.subtracting(Self.init(adapted: Self.adaptedOptions))
+    }
 }
