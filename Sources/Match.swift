@@ -36,7 +36,25 @@ extension MatchProtocol {
 /// A type that represents a match searched by regular expression.
 public struct Match : MatchProtocol {
     
-    public typealias Options = NSRegularExpression.MatchingOptions
+    /// Options for matching
+    public struct Options : OptionSetAdopating {
+        
+        public typealias Adopated = NSRegularExpression.MatchingOptions
+    
+        public static let reserved: UInt = 16
+        
+        public let rawValue: UInt
+        
+        public init(rawValue: UInt) {
+            self.rawValue = rawValue
+        }
+        
+        public static let anchored = Options.init(adopted: .anchored)
+        public static let withTransparentBounds = Options.init(adopted: .withTransparentBounds)
+        public static let withoutAnchoringBounds = Options.init(adopted: .withoutAnchoringBounds)
+        public static let reportCompletion = Options.init(adopted: .reportCompletion)
+        public static let reportProgress = Options.init(adopted: .reportProgress)
+    }
     
     /// The searched string.
     public let searched: String
