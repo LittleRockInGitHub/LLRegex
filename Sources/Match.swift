@@ -44,17 +44,18 @@ public struct Match : MatchProtocol {
     /// The wrapped NSTextCheckingResult.
     public let result: NSTextCheckingResult
     
-    init?(searched: String, result: NSTextCheckingResult) {
+    init?(searched: String, result: NSTextCheckingResult, regex: Regex) {
         
         guard let range = result.range.toRange(in: searched) else { return nil }
         
         self.searched = searched
         self.result = result
         self.range = range
+        self.regex = regex
     }
     
     /// The searching regex.
-    public var regex: Regex { return Regex(regularExpression: result.regularExpression!) }
+    public let regex: Regex
     
     /// The matched range.
     public let range: Range<String.Index>

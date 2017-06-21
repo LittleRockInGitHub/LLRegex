@@ -122,7 +122,7 @@ extension Match {
     public struct Iterator: IteratorProtocol {
     
         let searched: String
-        let regex: NSRegularExpression!
+        let regex: Regex!
         let options: Options
         let range: NSRange?
         
@@ -136,7 +136,7 @@ extension Match {
             self.regex = nil
         }
         
-        init(regex: NSRegularExpression, searched: String, options: Options, nsRange: NSRange) {
+        init(regex: Regex, searched: String, options: Options, nsRange: NSRange) {
             self.regex = regex
             self.searched = searched
             
@@ -153,7 +153,7 @@ extension Match {
         
         init(regex: Regex, searched: String, options: Options, range: Range<String.Index>? = nil) {
             
-            self.init(regex: regex.regularExpression, searched: searched, options: options, nsRange: (range ?? searched.startIndex..<searched.endIndex).toNSRange(in: searched))
+            self.init(regex: regex, searched: searched, options: options, nsRange: (range ?? searched.startIndex..<searched.endIndex).toNSRange(in: searched))
         }
         
         public mutating func next() -> Match? {
@@ -162,7 +162,7 @@ extension Match {
             
             var match: Match?
             
-            regex.enumerateMatches(in: searched, options: options, range: current) { (r, flags, stop) in
+            regex.regularExpression.enumerateMatches(in: searched, options: options, range: current) { (r, flags, stop) in
                 
                 guard let r = r else {
                     stop.pointee = true
@@ -170,7 +170,7 @@ extension Match {
                     return
                 }
                 
-                if lastMatched != r.range, let m = Match(searched: searched, result: r)  {
+                if lastMatched != r.range, let m = Match(searched: searched, result: r, regex: regex)  {
                     stop.pointee = true
                     match = m
                 }
@@ -220,7 +220,7 @@ extension Match.Iterator {
     
         guard let range = self.range else { return [] }
         
-        return self.regex.matches(in: searched, options: options, range: range).flatMap({ Match(searched: searched, result: $0)
+        return self.regex.regularExpression.matches(in: searched, options: options, range: range).flatMap({ Match(searched: searched, result: $0, regex: regex)
         })
     }
 }
