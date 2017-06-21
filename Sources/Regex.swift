@@ -8,6 +8,29 @@
 
 import Foundation
 
+func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int] {
+    struct RE {
+        static let captureGroup: Regex = Regex("(\\\\*+)\\((?!\\?)")
+        static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
+    }
+    
+    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    
+    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return [:] }
+    
+    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
+    
+    var reval = [String: Int]()
+    
+    for (idx, match) in allGroups.enumerated() {
+        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
+        reval[name] = idx + 1
+    }
+    
+    return reval
+}
+
 
 /// A type that is used to reprensent and apply regular expreesion to Unicode strings, which wrapps NSRegularExpression.
 public struct Regex {
@@ -42,7 +65,9 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        self.regularExpression = try NSRegularExpression(pattern: pattern, options: options)
+        let re = try NSRegularExpression(pattern: pattern, options: options)
+        self.regularExpression = re
+        self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
     }
     
     /**
@@ -53,6 +78,7 @@ public struct Regex {
     
     public init(regularExpression: NSRegularExpression) {
         self.regularExpression = regularExpression
+        self.namedCaptureGroupInfo = [:]
     }
     
     
@@ -83,9 +109,7 @@ public struct Regex {
     /// The number of capture groups.
     public var numberOfCaptureGroups: Int { return regularExpression.numberOfCaptureGroups }
     
-    private(set) internal lazy var namedCaptureGroupInfo: [String: Int] = {
-        return [:]
-    }()
+    let namedCaptureGroupInfo: [String: Int]
     
 }
 
