@@ -106,6 +106,12 @@ extension Match {
             return CaptureGroup(index: index, match: match)
         }
         
+        public subscript(name: String) -> CaptureGroup? {
+            return match.regex.namedCaptureGroupInfo[name].map {
+                self[$0]
+            }
+        }
+        
         init(match: Match) {
             self.match = match
         }
