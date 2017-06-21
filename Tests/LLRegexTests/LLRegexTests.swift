@@ -199,5 +199,10 @@ class LLRegexTests: XCTestCase {
         regex.regularExpression = try! NSRegularExpression(pattern: "\\d*", options: .caseInsensitive)
         XCTAssertEqual(regex.options, .caseInsensitive)
         
+        regex = Regex("\\d+", options: [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(regex.options, [.caseInsensitive, .namedCaptureGroups])
+        
+        XCTAssertEqual(regex.regularExpression.options, [.caseInsensitive])
+        
     }
 }

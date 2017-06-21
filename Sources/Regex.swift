@@ -37,6 +37,8 @@ public struct Regex {
     
     /// Options of Regex.
     public struct Options: OptionSet {
+        
+        static let reverved: UInt = 16
     
         public let rawValue: UInt
         
@@ -55,9 +57,11 @@ public struct Regex {
         public static let anchorsMatchLines = Options.init(.anchorsMatchLines)
         public static let useUnixLineSeparators = Options.init(.useUnixLineSeparators)
         public static let useUnicodeWordBoundaries = Options.init(.useUnicodeWordBoundaries)
+        public static let namedCaptureGroups = Options(rawValue: 1 << reverved)
         
         public func toNSRegularExpresstionOptions() -> NSRegularExpression.Options {
-            return NSRegularExpression.Options.init(rawValue: self.rawValue)
+            let flag = (1 << Options.reverved) - 1
+            return NSRegularExpression.Options.init(rawValue: self.rawValue & flag)
         }
     }
     
