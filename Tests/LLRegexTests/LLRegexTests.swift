@@ -13,6 +13,7 @@ class LLRegexTests: XCTestCase {
     
     var tmRegex: Regex!
     var zeldaRegex: Regex!
+    var namedRegex: Regex!
     var s: String = "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™"
     
     override func setUp() {
@@ -21,6 +22,7 @@ class LLRegexTests: XCTestCase {
         
         tmRegex = Regex("((\\S)(\\S*)(\\S))™")
         zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])
+        namedRegex = Regex("(?<name>zelda|link)(?<brand>™)?", options: [.caseInsensitive, .namedCaptureGroups])
     }
     
     override func tearDown() {
@@ -150,6 +152,18 @@ class LLRegexTests: XCTestCase {
         
         XCTAssertNil(try? Regex(pattern: "(\\d"))
         XCTAssertNotNil(try? Regex(pattern: "()"))
+    }
+    
+    func testPattern() {
+    
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        XCTAssertThrowsError(try zeldaRegex.setPattern(""))
+        
+        XCTAssertNoThrow(try zeldaRegex.setPattern("\\d+"))
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
     }
     
     func testRegexPerformance() {
