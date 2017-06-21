@@ -36,12 +36,37 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
 public struct Regex {
     
     /// Options of Regex.
-    public typealias Options = NSRegularExpression.Options
+    public struct Options: OptionSet {
+    
+        public let rawValue: UInt
+        
+        public init(rawValue: UInt) {
+            self.rawValue = rawValue
+        }
+        
+        public init(_ options: NSRegularExpression.Options) {
+            self.init(rawValue: options.rawValue)
+        }
+        
+        public static let caseInsensitive = Options.init(.caseInsensitive)
+        public static let allowCommentsAndWhitespace = Options.init(.allowCommentsAndWhitespace)
+        public static let ignoreMetacharacters = Options.init(.ignoreMetacharacters)
+        public static let dotMatchesLineSeparators = Options.init(.dotMatchesLineSeparators)
+        public static let anchorsMatchLines = Options.init(.anchorsMatchLines)
+        public static let useUnixLineSeparators = Options.init(.useUnixLineSeparators)
+        public static let useUnicodeWordBoundaries = Options.init(.useUnicodeWordBoundaries)
+        
+        public func toNSRegularExpresstionOptions() -> NSRegularExpression.Options {
+            return NSRegularExpression.Options.init(rawValue: self.rawValue)
+        }
+    }
     
     /// Wrapped NSRegularExpression.
-    public var regularExpression: NSRegularExpression
-    
-    
+    public var regularExpression: NSRegularExpression {
+        didSet {
+            _options = Options(regularExpression.options)
+        }
+    }
     
     /**
      Creates a `Regex` with unchecked string literal and options. Runtime error is raised if the unchecked pattern is invalid.
@@ -65,8 +90,9 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        let re = try NSRegularExpression(pattern: pattern, options: options)
+        let re = try NSRegularExpression(pattern: pattern, options: options.toNSRegularExpresstionOptions())
         self.regularExpression = re
+        self._options = options
 //        self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
         self.namedCaptureGroupInfo = [:]
     }
@@ -79,6 +105,7 @@ public struct Regex {
     
     public init(regularExpression: NSRegularExpression) {
         self.regularExpression = regularExpression
+        self._options = Options(regularExpression.options)
         self.namedCaptureGroupInfo = [:]
     }
     
@@ -95,11 +122,12 @@ public struct Regex {
         self = try Regex(pattern: pattern, options: self.options)
     }
     
+    private var _options: Options
     
     /// The options value.
     public var options: Options {
         get {
-            return regularExpression.options
+            return _options
         }
         set {
             self = try! Regex(pattern: self.pattern, options: newValue)
