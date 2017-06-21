@@ -178,4 +178,26 @@ class LLRegexTests: XCTestCase {
         
         XCTAssertLessThan(interval1, interval2 * 10)
     }
+    
+    func testOptions() {
+        var regex = Regex("\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        XCTAssertEqual(regex.options,  [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.options.remove(.caseInsensitive)
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        try! regex.setPattern("\\d*")
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex = Regex(regularExpression: try! NSRegularExpression(pattern: "\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators]))
+        XCTAssertEqual(regex.options, [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.regularExpression = try! NSRegularExpression(pattern: "\\d*", options: .caseInsensitive)
+        XCTAssertEqual(regex.options, .caseInsensitive)
+        
+    }
 }
