@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 /// A type that is used to reprensent and apply regular expreesion to Unicode strings, which wrapps NSRegularExpression.
 public struct Regex {
     
@@ -16,6 +17,8 @@ public struct Regex {
     
     /// Wrapped NSRegularExpression.
     public var regularExpression: NSRegularExpression
+    
+    
     
     /**
      Creates a `Regex` with unchecked string literal and options. Runtime error is raised if the unchecked pattern is invalid.
@@ -62,7 +65,7 @@ public struct Regex {
      - throws: An error if pattern is invalid.
      */
     public mutating func setPattern(_ pattern: String) throws {
-        regularExpression = try NSRegularExpression(pattern: pattern, options: regularExpression.options)
+        self = try Regex(pattern: pattern, options: self.options)
     }
     
     
@@ -72,13 +75,17 @@ public struct Regex {
             return regularExpression.options
         }
         set {
-            regularExpression = try! NSRegularExpression(pattern: regularExpression.pattern, options: newValue)
+            self = try! Regex(pattern: self.pattern, options: newValue)
         }
     }
     
     
     /// The number of capture groups.
     public var numberOfCaptureGroups: Int { return regularExpression.numberOfCaptureGroups }
+    
+    private(set) internal lazy var namedCaptureGroupInfo: [String: Int] = {
+        return [:]
+    }()
     
 }
 
