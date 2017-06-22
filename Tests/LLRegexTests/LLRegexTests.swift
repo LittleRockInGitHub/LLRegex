@@ -183,6 +183,14 @@ class LLRegexTests: XCTestCase {
         XCTAssertEqual(namedRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
     }
     
+    func testRegularExpression() {
+    
+        tmRegex.regularExpression = try! NSRegularExpression(pattern: "\\d+", options: [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+        
+        XCTAssertEqual(tmRegex.pattern, "\\d+")
+        XCTAssertEqual(tmRegex.options, [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+    }
+    
     func testRegexPerformance() {
         let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
         
