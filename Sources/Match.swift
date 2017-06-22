@@ -125,9 +125,7 @@ extension Match {
         }
         
         public subscript(name: String) -> CaptureGroup? {
-            return match.regex.namedCaptureGroupInfo[name].map {
-                self[$0]
-            }
+            return match.regex.namedCaptureGroupInfo[name].map { self[$0] }
         }
         
         init(match: Match) {
@@ -150,6 +148,11 @@ extension Match {
      - returns: The replacement string.
      */
     public func replacement(withTemplate template: String) -> String {
+        
+        if !regex.namedCaptureGroupInfo.isEmpty {
+            
+        }
+        
         return result.regularExpression!.replacementString(for: result, in: searched, offset: 0, template: template)
     }
 }

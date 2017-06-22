@@ -92,4 +92,22 @@ class NamedCaptureGroupsTests: XCTestCase {
         XCTAssertEqual(match.groups["nested"]!.matched, "nested")
         XCTAssertNil(match.groups[""])
     }
+    
+    func testReplacement() {
+        let date = "1978-12-24"
+        let named = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))", options: .namedCaptureGroups)
+        let nonNamed = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))", options: .namedCaptureGroups)
+        let namedMatch = named.matches(in: date).first!
+        let nonNamedMatch = nonNamed.matches(in: date).first!
+        
+        XCTAssertEqual(namedMatch.replacement(withTemplate: "$2$3$4"), "19781224")
+        XCTAssertEqual(namedMatch.replacement(withTemplate: "${year}${month}${day}"), "19781224")
+        XCTAssertEqual(namedMatch.replacement(withTemplate: "\\${year}${month}\\\\${day}"), "${year}12\\24")
+        XCTAssertEqual(namedMatch.replacement(withTemplate: "$9${unknown}!"), "!")
+    
+        XCTAssertEqual(nonNamedMatch.replacement(withTemplate: "$2$3$4"), "19781224")
+        XCTAssertEqual(nonNamedMatch.replacement(withTemplate: "${year}${month}${day}"), "${year}${month}${day}")
+        XCTAssertEqual(nonNamedMatch.replacement(withTemplate: "$9${unknown}!"), "${unknown}!")
+
+    }
 }
