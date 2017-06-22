@@ -13,6 +13,7 @@ class LLRegexTests: XCTestCase {
     
     var tmRegex: Regex!
     var zeldaRegex: Regex!
+    var namedRegex: Regex!
     var s: String = "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™"
     
     override func setUp() {
@@ -21,6 +22,7 @@ class LLRegexTests: XCTestCase {
         
         tmRegex = Regex("((\\S)(\\S*)(\\S))™")
         zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])
+        namedRegex = Regex("(?<name>zelda|link)(?<brand>™)?", options: [.caseInsensitive, .namedCaptureGroups])
     }
     
     override func tearDown() {
@@ -152,6 +154,43 @@ class LLRegexTests: XCTestCase {
         XCTAssertNotNil(try? Regex(pattern: "()"))
     }
     
+    func testPattern() {
+    
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        XCTAssertThrowsError(try zeldaRegex.setPattern(""))
+        
+        XCTAssertNoThrow(try zeldaRegex.setPattern("\\d+"))
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
+    }
+    
+    func testOptions() {
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
+        namedRegex.options.remove(.namedCaptureGroups)
+        
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options.insert(.namedCaptureGroups)
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options = [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups]
+        XCTAssertEqual(namedRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
+    }
+    
+    func testRegularExpression() {
+    
+        tmRegex.regularExpression = try! NSRegularExpression(pattern: "\\d+", options: [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+        
+        XCTAssertEqual(tmRegex.pattern, "\\d+")
+        XCTAssertEqual(tmRegex.options, [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+    }
+    
     func testRegexPerformance() {
         let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
         
@@ -177,5 +216,49 @@ class LLRegexTests: XCTestCase {
         Swift.print(match.count)
         
         XCTAssertLessThan(interval1, interval2 * 10)
+    }
+    
+    func testRegexOptions() {
+        var regex = Regex("\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        XCTAssertEqual(regex.options,  [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.options.remove(.caseInsensitive)
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        XCTAssertEqual(regex.options.toAdapted(),  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        try! regex.setPattern("\\d*")
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex = Regex(regularExpression: try! NSRegularExpression(pattern: "\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators]))
+        XCTAssertEqual(regex.options, [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.regularExpression = try! NSRegularExpression(pattern: "\\d*", options: .caseInsensitive)
+        XCTAssertEqual(regex.options, .caseInsensitive)
+        
+        regex = Regex("\\d+", options: [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(regex.options, [.caseInsensitive, .namedCaptureGroups])
+        
+        XCTAssertEqual(regex.regularExpression.options, [.caseInsensitive])
+        
+    }
+    
+    func testMatchOptions() {
+        
+        var options: Match.Options = [.anchored, .withTransparentBounds, .withoutAnchoringBounds]
+        
+        XCTAssertEqual(options, [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        
+        XCTAssertEqual(options.toAdapted(), [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        
+        options = []
+        XCTAssertEqual(options.toAdapted(), [])
+        
+        XCTAssertEqual(options, Match.Options(adapted: [.reportProgress, .reportCompletion]))
     }
 }

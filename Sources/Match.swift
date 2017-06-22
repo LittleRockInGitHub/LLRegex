@@ -36,7 +36,28 @@ extension MatchProtocol {
 /// A type that represents a match searched by regular expression.
 public struct Match : MatchProtocol {
     
-    public typealias Options = NSRegularExpression.MatchingOptions
+    /// Options for matching
+    public struct Options : OptionSetAdapting {
+        
+        typealias Adopated = NSRegularExpression.MatchingOptions
+        
+        public let rawValue: UInt
+        
+        public init(rawValue: UInt) {
+            self.rawValue = rawValue
+        }
+        
+        /// Same as NSRegularExpression.MatchingOptions.anchored
+        public static let anchored = Options(adapted: .anchored)
+        /// Same as NSRegularExpression.MatchingOptions.withTransparentBounds
+        public static let withTransparentBounds = Options(adapted: .withTransparentBounds)
+        /// Same as NSRegularExpression.MatchingOptions.withoutAnchoringBounds
+        public static let withoutAnchoringBounds = Options(adapted: .withoutAnchoringBounds)
+        
+        static let adaptedOptions: NSRegularExpression.MatchingOptions = [.anchored,
+                                                                          .withTransparentBounds,
+                                                                          .withoutAnchoringBounds]
+    }
     
     /// The searched string.
     public let searched: String
@@ -44,17 +65,18 @@ public struct Match : MatchProtocol {
     /// The wrapped NSTextCheckingResult.
     public let result: NSTextCheckingResult
     
-    init?(searched: String, result: NSTextCheckingResult) {
+    init?(searched: String, result: NSTextCheckingResult, regex: Regex) {
         
         guard let range = result.range.toRange(in: searched) else { return nil }
         
         self.searched = searched
         self.result = result
         self.range = range
+        self.regex = regex
     }
     
     /// The searching regex.
-    public var regex: Regex { return Regex(regularExpression: result.regularExpression!) }
+    public let regex: Regex
     
     /// The matched range.
     public let range: Range<String.Index>
@@ -105,6 +127,10 @@ extension Match {
             return CaptureGroup(index: index, match: match)
         }
         
+        public subscript(name: String) -> CaptureGroup? {
+            return match.regex.namedCaptureGroupsInfo?[name].map { self[$0] }
+        }
+        
         init(match: Match) {
             self.match = match
         }
@@ -125,6 +151,29 @@ extension Match {
      - returns: The replacement string.
      */
     public func replacement(withTemplate template: String) -> String {
+        
+        var template = template
+        
+        if regex.options.contains(.namedCaptureGroups) {
+            
+            let info = regex.namedCaptureGroupsInfo ?? [:]
+            
+            struct RE {
+                static let named: Regex = Regex("(\\\\*)\\$\\{(\\w+)\\}")
+            }
+            
+            template = RE.named.replacingMatches(in: template) { (_, match) -> Match.Replacing in
+                
+                guard let prefix = match.groups[1].matched, prefix.utf16.count % 2 == 0 else { return .keep }
+                
+                if let name = match.groups[2].matched, let idx = info[name] {
+                    return .replaceWithTemplate("$1\\$\(idx)")
+                } else {
+                    return .remove
+                }
+            }
+        }
+        
         return result.regularExpression!.replacementString(for: result, in: searched, offset: 0, template: template)
     }
 }
