@@ -200,7 +200,7 @@ extension Match {
             self.regex = regex
             self.searched = searched
             
-            self.options = options.toAdapted()
+            self.options = options.toAdapted().insert(.reportCompletion)
             
             self.range = nsRange
             self.current = nsRange
