@@ -62,6 +62,9 @@
 		9DE5C8C21EFA85B800E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
 		9DE5C8C31EFA85BA00E1914B /* NamedCaptureGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C01EFA85B500E1914B /* NamedCaptureGroupsTests.swift */; };
 		9DE5C8C51EFAD7FF00E1914B /* OptionSetAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */; };
+		9DE5C8C61EFBC94500E1914B /* OptionSetAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */; };
+		9DE5C8C71EFBC94600E1914B /* OptionSetAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */; };
+		9DE5C8C81EFBC94700E1914B /* OptionSetAdapting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE5C8C41EFAD7FF00E1914B /* OptionSetAdapting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -539,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D96829A1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9DE5C8C61EFBC94500E1914B /* OptionSetAdapting.swift in Sources */,
 				9D9682A91EF2A6D4004307E2 /* String+Regex.swift in Sources */,
 				9D9682A51EF2A6D4004307E2 /* Regex.swift in Sources */,
 				9D9682961EF2A6C5004307E2 /* Range+Util.swift in Sources */,
@@ -566,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D96829B1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9DE5C8C71EFBC94600E1914B /* OptionSetAdapting.swift in Sources */,
 				9D9682AA1EF2A6D4004307E2 /* String+Regex.swift in Sources */,
 				9D9682A61EF2A6D4004307E2 /* Regex.swift in Sources */,
 				9D9682971EF2A6C5004307E2 /* Range+Util.swift in Sources */,
@@ -593,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D96829C1EF2A6C5004307E2 /* String+Util.swift in Sources */,
+				9DE5C8C81EFBC94700E1914B /* OptionSetAdapting.swift in Sources */,
 				9D9682AB1EF2A6D4004307E2 /* String+Regex.swift in Sources */,
 				9D9682A71EF2A6D4004307E2 /* Regex.swift in Sources */,
 				9D9682981EF2A6C5004307E2 /* Range+Util.swift in Sources */,
