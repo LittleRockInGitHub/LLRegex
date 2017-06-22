@@ -23,60 +23,60 @@ class NamedCaptureGroupsTests: XCTestCase {
     
     func testExtraction() {
     
-        XCTAssertEqual(extractNamedCaptureGroups(in: "\\d", expectedGroupsCount: 0), [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "\\d", expectedGroupsCount: 0)!, [:])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "()", expectedGroupsCount: 1), [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "()", expectedGroupsCount: 1)!, [:])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<name>abc)", expectedGroupsCount: 1), ["name": 1])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<name>abc)", expectedGroupsCount: 1)!, ["name": 1])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<name>abc)-(?<number1>\\d+)", expectedGroupsCount: 2), ["name": 1, "number1": 2])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<name>abc)-(?<number1>\\d+)", expectedGroupsCount: 2)!, ["name": 1, "number1": 2])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d)(?<name>abc)-(?<number1>\\d+)", expectedGroupsCount: 3), ["name": 2, "number1": 3])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d)(?<name>abc)-(?<number1>\\d+)", expectedGroupsCount: 3)!, ["name": 2, "number1": 3])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d(?<name>abc)-(?<number1>\\d+))", expectedGroupsCount: 3), ["name": 2, "number1": 3])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d(?<name>abc)-(?<number1>\\d+))", expectedGroupsCount: 3)!, ["name": 2, "number1": 3])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d(?<name>abc((?<number1>\\d+)1)))", expectedGroupsCount: 4), ["name": 2, "number1": 4])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(\\d(?<name>abc((?<number1>\\d+)1)))", expectedGroupsCount: 4)!, ["name": 2, "number1": 4])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?:\\d)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<!>)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<=)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?!)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?=)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?#)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "(?>)", expectedGroupsCount: 0), [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?:\\d)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<!>)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?<=)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?!)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?=)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?#)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "(?>)", expectedGroupsCount: 0)!, [:])
         
-        XCTAssertEqual(extractNamedCaptureGroups(in: "\\(\\)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "\\\\()", expectedGroupsCount: 1), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "\\(?<name>\\)", expectedGroupsCount: 0), [:])
-        XCTAssertEqual(extractNamedCaptureGroups(in: "\\\\(?<name>)", expectedGroupsCount: 1), ["name": 1])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "\\(\\)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "\\\\()", expectedGroupsCount: 1)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "\\(?<name>\\)", expectedGroupsCount: 0)!, [:])
+        XCTAssertEqual(extractNamedCaptureGroups(in: "\\\\(?<name>)", expectedGroupsCount: 1)!, ["name": 1])
     }
     
     func testNamdCaptureGroupsTypes() {
     
-        XCTAssertEqual(Regex("\\d", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("()", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?<name>abc)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 1)
-        XCTAssertEqual(Regex("(?<name>abc)-(?<number1>\\d+)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d)(?<name>abc)-(?<number1>\\d+)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc)-(?<number1>\\d+))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
-        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 2)
+        XCTAssertEqual(Regex("\\d", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("()", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?<name>abc)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 1)
+        XCTAssertEqual(Regex("(?<name>abc)-(?<number1>\\d+)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d)(?<name>abc)-(?<number1>\\d+)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc)-(?<number1>\\d+))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
+        XCTAssertEqual(Regex("(\\d(?<name>abc((?<number1>\\d+)1)))", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 2)
         
-        XCTAssertEqual(Regex("(?:\\d)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?<!>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?<=)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?!)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?=)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?#)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("(?>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
+        XCTAssertEqual(Regex("(?:\\d)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?<!>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?<=)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?!)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?=)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?#)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("(?>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
         
-        XCTAssertEqual(Regex("\\(\\)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("\\\\()", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("\\(?<name>\\)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 0)
-        XCTAssertEqual(Regex("\\\\(?<name>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo.count, 1)
+        XCTAssertEqual(Regex("\\(\\)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("\\\\()", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("\\(?<name>\\)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
+        XCTAssertEqual(Regex("\\\\(?<name>)", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 1)
     }
     
     func testNamdCaptureGroups() {
@@ -84,7 +84,7 @@ class NamedCaptureGroupsTests: XCTestCase {
         let s = "123 normal NAMED (Nested) atomic non-capture 456"
         let regex = Regex("(?#comment)(?<!a)(?<=123) (?i)(NORMAL) (?<name>named) (\\((?<nested>nested)\\)) (?>atomic) (?:non-capture) (?=456)(?!a)", options: [.namedCaptureGroups])
         
-        XCTAssertEqual(regex.namedCaptureGroupsInfo, ["name": 2, "nested": 4])
+        XCTAssertEqual(regex.namedCaptureGroupsInfo!, ["name": 2, "nested": 4])
         
         let match = regex.matches(in: s).first!
         
@@ -109,5 +109,14 @@ class NamedCaptureGroupsTests: XCTestCase {
         XCTAssertEqual(nonNamedMatch.replacement(withTemplate: "${year}${month}${day}"), "${year}${month}${day}")
         XCTAssertEqual(nonNamedMatch.replacement(withTemplate: "$9${unknown}!"), "${unknown}!")
 
+    }
+    
+    func testComment() {
+        
+        let s = "1234567890"
+        let regex = Regex("(\\d{1,2})(?<suffix>\\d)(?x) # (\\d+)", options: .namedCaptureGroups)
+        
+        XCTAssertNil(regex.namedCaptureGroupsInfo)
+        XCTAssertEqual(regex.matches(in: s).first!.replacement(withTemplate: "$1${suffix}"), "12")
     }
 }

@@ -125,7 +125,7 @@ extension Match {
         }
         
         public subscript(name: String) -> CaptureGroup? {
-            return match.regex.namedCaptureGroupsInfo[name].map { self[$0] }
+            return match.regex.namedCaptureGroupsInfo?[name].map { self[$0] }
         }
         
         init(match: Match) {
@@ -151,9 +151,9 @@ extension Match {
         
         var template = template
         
-        if !regex.namedCaptureGroupsInfo.isEmpty {
+        if regex.options.contains(.namedCaptureGroups) {
             
-            let info = regex.namedCaptureGroupsInfo
+            let info = regex.namedCaptureGroupsInfo ?? [:]
             
             struct RE {
                 static let named: Regex = Regex("(\\\\*)\\$\\{(\\w+)\\}")

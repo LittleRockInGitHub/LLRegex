@@ -130,7 +130,7 @@ public struct Regex {
     /// The number of capture groups.
     public var numberOfCaptureGroups: Int { return regularExpression.numberOfCaptureGroups }
     
-    let namedCaptureGroupsInfo: [String: Int]
+    let namedCaptureGroupsInfo: [String: Int]?
     
 }
 
@@ -442,7 +442,7 @@ extension String : RegexConvertible {
 
 // MARK: NamedCaptureGroup
 
-func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int] {
+func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int]? {
     struct RE {
         static let captureGroup: Regex = Regex("(\\\\*+)\\((?!\\?)")
         static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
@@ -451,7 +451,7 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
     let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
     let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
     
-    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return [:] }
+    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return nil }
     
     let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
     
