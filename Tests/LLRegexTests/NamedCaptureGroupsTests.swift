@@ -81,15 +81,15 @@ class NamedCaptureGroupsTests: XCTestCase {
     
     func testNamdCaptureGroups() {
         
-        let s = "123 normal named (nested) atomic non-capture 456"
-        let regex = Regex("(?<!a)(?<=123) (?i)(NORMAL) (?<name>named) (\\((?<nested>nested)\\)) (?>atomic) (?:non-capture) (?=456)(?!a)", options: [.namedCaptureGroups])
+        let s = "123 normal NAMED (Nested) atomic non-capture 456"
+        let regex = Regex("(?#comment)(?<!a)(?<=123) (?i)(NORMAL) (?<name>named) (\\((?<nested>nested)\\)) (?>atomic) (?:non-capture) (?=456)(?!a)", options: [.namedCaptureGroups])
         
         XCTAssertEqual(regex.namedCaptureGroupInfo, ["name": 2, "nested": 4])
         
         let match = regex.matches(in: s).first!
         
-        XCTAssertEqual(match.groups["name"]!.matched, "named")
-        XCTAssertEqual(match.groups["nested"]!.matched, "nested")
+        XCTAssertEqual(match.groups["name"]!.matched, "NAMED")
+        XCTAssertEqual(match.groups["nested"]!.matched, "Nested")
         XCTAssertNil(match.groups[""])
     }
     
