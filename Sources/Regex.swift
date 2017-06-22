@@ -83,9 +83,9 @@ public struct Regex {
         self._options = options
         
         if options.contains(.namedCaptureGroups) {
-            self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
+            self.namedCaptureGroupsInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
         } else {
-            self.namedCaptureGroupInfo = [:]
+            self.namedCaptureGroupsInfo = [:]
         }
     }
     
@@ -98,7 +98,7 @@ public struct Regex {
     public init(regularExpression: NSRegularExpression) {
         self._regularExpression = regularExpression
         self._options = Options(adapted: regularExpression.options)
-        self.namedCaptureGroupInfo = [:]
+        self.namedCaptureGroupsInfo = [:]
     }
     
     
@@ -130,7 +130,7 @@ public struct Regex {
     /// The number of capture groups.
     public var numberOfCaptureGroups: Int { return regularExpression.numberOfCaptureGroups }
     
-    let namedCaptureGroupInfo: [String: Int]
+    let namedCaptureGroupsInfo: [String: Int]
     
 }
 
