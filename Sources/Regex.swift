@@ -44,10 +44,15 @@ public struct Regex {
         
     }
     
+    private let _regularExpression: NSRegularExpression
+    
     /// Wrapped NSRegularExpression.
     public var regularExpression: NSRegularExpression {
-        didSet {
-            _options = Options(adapted: regularExpression.options)
+        get {
+            return _regularExpression
+        }
+        set {
+            self = Regex(regularExpression: newValue)
         }
     }
     
@@ -73,7 +78,15 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        self.init(regularExpression: try NSRegularExpression(pattern: pattern, options: options.toAdapted()), options: options)
+        let re = try NSRegularExpression(pattern: pattern, options: options.toAdapted())
+        self._regularExpression = re
+        self._options = options
+        
+        if options.contains(.namedCaptureGroups) {
+            self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
+        } else {
+            self.namedCaptureGroupInfo = [:]
+        }
     }
     
     /**
@@ -82,15 +95,10 @@ public struct Regex {
      - returns: An instance wrapping given NSRegularExpression.
      */
     
-    public init(regularExpression: NSRegularExpression, options: Regex.Options = []) {
-        self.regularExpression = regularExpression
-        self._options = options.exclusive().union(Options(adapted: regularExpression.options))
-        
-        if options.contains(.namedCaptureGroups) {
-            self.namedCaptureGroupInfo = extractNamedCaptureGroups(in: regularExpression.pattern, expectedGroupsCount: regularExpression.numberOfCaptureGroups)
-        } else {
-            self.namedCaptureGroupInfo = [:]
-        }
+    public init(regularExpression: NSRegularExpression) {
+        self._regularExpression = regularExpression
+        self._options = Options(adapted: regularExpression.options)
+        self.namedCaptureGroupInfo = [:]
     }
     
     
@@ -106,7 +114,7 @@ public struct Regex {
         self = try Regex(pattern: pattern, options: self.options)
     }
     
-    private var _options: Options
+    private let _options: Options
     
     /// The options value.
     public var options: Options {
@@ -114,7 +122,7 @@ public struct Regex {
             return _options
         }
         set {
-            self = try! Regex(pattern: self.pattern, options: newValue)
+            self = try! Regex(pattern: pattern, options: newValue)
         }
     }
     

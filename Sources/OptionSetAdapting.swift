@@ -22,15 +22,13 @@ protocol OptionSetAdapting : OptionSet {
 
 extension OptionSetAdapting where RawValue == Adapted.RawValue {
     
+    static var adaptingOptions: Self { return Self.init(adapted: Self.adaptedOptions) }
+    
     init(adapted options: Adapted) {
         self.init(rawValue: options.intersection(Self.adaptedOptions).rawValue)
     }
     
     func toAdapted() -> Adapted {
         return Adapted.init(rawValue: self.rawValue).intersection(Self.adaptedOptions)
-    }
-    
-    func exclusive() -> Self {
-        return self.subtracting(Self.init(adapted: Self.adaptedOptions))
     }
 }

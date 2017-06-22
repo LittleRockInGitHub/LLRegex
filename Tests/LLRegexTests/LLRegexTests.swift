@@ -166,6 +166,23 @@ class LLRegexTests: XCTestCase {
         
     }
     
+    func testOptions() {
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
+        namedRegex.options.remove(.namedCaptureGroups)
+        
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options.insert(.namedCaptureGroups)
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options = [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups]
+        XCTAssertEqual(namedRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
+    }
+    
     func testRegexPerformance() {
         let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
         
