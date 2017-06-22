@@ -47,8 +47,11 @@ public struct Match : MatchProtocol {
             self.rawValue = rawValue
         }
         
+        /// Same as NSRegularExpression.MatchingOptions.anchored
         public static let anchored = Options(adapted: .anchored)
+        /// Same as NSRegularExpression.MatchingOptions.withTransparentBounds
         public static let withTransparentBounds = Options(adapted: .withTransparentBounds)
+        /// Same as NSRegularExpression.MatchingOptions.withoutAnchoringBounds
         public static let withoutAnchoringBounds = Options(adapted: .withoutAnchoringBounds)
         
         static let adaptedOptions: NSRegularExpression.MatchingOptions = [.anchored,
