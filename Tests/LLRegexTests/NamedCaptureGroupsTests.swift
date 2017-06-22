@@ -96,7 +96,7 @@ class NamedCaptureGroupsTests: XCTestCase {
     func testReplacement() {
         let date = "1978-12-24"
         let named = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))", options: .namedCaptureGroups)
-        let nonNamed = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))", options: .namedCaptureGroups)
+        let nonNamed = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))")
         let namedMatch = named.matches(in: date).first!
         let nonNamedMatch = nonNamed.matches(in: date).first!
         

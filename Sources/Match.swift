@@ -149,8 +149,26 @@ extension Match {
      */
     public func replacement(withTemplate template: String) -> String {
         
+        var template = template
+        
         if !regex.namedCaptureGroupInfo.isEmpty {
             
+            let info = regex.namedCaptureGroupInfo
+            
+            struct RE {
+                static let named: Regex = Regex("(\\\\*)\\$\\{(\\w+)\\}")
+            }
+            
+            template = RE.named.replacingMatches(in: template) { (_, match) -> Match.Replacing in
+                
+                guard let prefix = match.groups[1].matched, prefix.utf16.count % 2 == 0 else { return .keep }
+                
+                if let name = match.groups[2].matched, let idx = info[name] {
+                    return .replaceWithTemplate("$1\\$\(idx)")
+                } else {
+                    return .remove
+                }
+            }
         }
         
         return result.regularExpression!.replacementString(for: result, in: searched, offset: 0, template: template)
