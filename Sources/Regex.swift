@@ -25,13 +25,21 @@ public struct Regex {
             self.rawValue = rawValue
         }
         
+        /// Same as NSRegularExpression.Option.caseInsensitive
         public static let caseInsensitive = Options(adapted: .caseInsensitive)
+        /// Same as NSRegularExpression.Option.allowCommentsAndWhitespace
         public static let allowCommentsAndWhitespace = Options(adapted: .allowCommentsAndWhitespace)
+        /// Same as NSRegularExpression.Option.ignoreMetacharacters
         public static let ignoreMetacharacters = Options(adapted: .ignoreMetacharacters)
+        /// Same as NSRegularExpression.Option.dotMatchesLineSeparators
         public static let dotMatchesLineSeparators = Options(adapted: .dotMatchesLineSeparators)
+        /// Same as NSRegularExpression.Option.anchorsMatchLines
         public static let anchorsMatchLines = Options(adapted: .anchorsMatchLines)
+        /// Same as NSRegularExpression.Option.useUnixLineSeparators
         public static let useUnixLineSeparators = Options(adapted: .useUnixLineSeparators)
+        /// Same as NSRegularExpression.Option.useUnicodeWordBoundaries
         public static let useUnicodeWordBoundaries = Options(adapted: .useUnicodeWordBoundaries)
+        /// Enables named capture groups feature
         public static let namedCaptureGroups = Options(rawValue: 1 << reserved)
         
         static let adaptedOptions: NSRegularExpression.Options = [.caseInsensitive,
