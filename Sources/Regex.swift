@@ -451,7 +451,7 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
     let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
     let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
     
-    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount - 1 else { return [:] }
+    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return [:] }
     
     let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
     
