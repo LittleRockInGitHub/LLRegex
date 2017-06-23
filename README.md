@@ -10,6 +10,7 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ## Features
  * Value Semantics
  * Enumerates matches with Sequence
+ * Named capture group
  * Range supported (NSRange eliminated)
  * Regex Options, Match Options
  * Find & Replace with flexibility
@@ -93,6 +94,21 @@ if let first = numbers.matches(in: s).first {
     let replacement = first.replacement(withTemplate: "$3$2$1")     // Replacement with template
 }
 ```
+  
+### Named Capture Group
+Named capture group feature is enabled when `.namedCaptureGroups` is set.
+
+```swift
+let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCaptureGroups)
+        let s = "Today is 2017-06-23."
+        
+        for m in named.matches(in: s) {
+            m.groups["year"]?.matched
+        }
+        
+        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017
+```  
+- Note: If the comment in pattern contains the notation of capture group, the detections for named capture group will be failed.
 
 ### Replacing
 
