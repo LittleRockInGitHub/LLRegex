@@ -15,6 +15,10 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
  * Regex Options, Match Options
  * Find & Replace with flexibility
  * String matching, replacing, splitting
+
+## Communication
+* If you **found a bug**, open an issue, typically with related pattern.
+* If you **have a feature request**, open an issue.
  
 ## Requirements
 
