@@ -31,7 +31,7 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ### CocoaPods
 
 ```ruby
-pod 'LLRegex', '~> 1.1'
+pod 'LLRegex', '~> 1.2'
 ```
 
 ### Swift Package Manager
@@ -110,7 +110,7 @@ let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCa
             m.groups["year"]?.matched
         }
         
-        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017
+        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017.
 ```  
 - Note: If the comment in pattern contains the notation of capture group, the detections for named capture group will be failed.
 
