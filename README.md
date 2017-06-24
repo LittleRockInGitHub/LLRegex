@@ -112,7 +112,7 @@ let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCa
         
         named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017.
 ```  
-- Note: If the comment in pattern contains the notation of capture group, the detections for named capture group will be failed.
+- Note: If the comment in pattern contains the notation of capture group, the detection for named capture group will fail.
 
 ### Replacing
 
