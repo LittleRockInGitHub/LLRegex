@@ -10,7 +10,7 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ## Features
  * Value Semantics
  * Enumerates matches with Sequence
- * Named capture group
+ * Named capture group (unavailable on iOS 8)
  * Range supported (NSRange eliminated)
  * Regex Options, Match Options
  * Find & Replace with flexibility
@@ -99,7 +99,7 @@ if let first = numbers.matches(in: s).first {
 }
 ```
   
-### Named Capture Group
+### Named Capture Group (unavailable on iOS 8)
 Named capture group feature is enabled when `.namedCaptureGroups` is set.
 
 ```swift
