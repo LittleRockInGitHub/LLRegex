@@ -56,17 +56,18 @@ class LLRegexTests: XCTestCase {
     
     func testMatchRange() {
         
-        var range = 0..<5
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 1)
+        var range: Range<Int> = 0..<5
+        print(s.substring(with: s.charactersRange(offsetBy: range)))
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 1)
         
         range = 0..<4
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 0)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 0)
         
         range = 20..<73
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 4)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 4)
         
         range = 20..<72
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 3)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 3)
     }
     
     
@@ -100,7 +101,7 @@ class LLRegexTests: XCTestCase {
     
     func testReplaceRange() {
         
-        XCTAssertEqual(tmRegex.replacingFirstMatch(in: s, range: s.range(offsetBy: 0..<4), replacement: .remove), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
+        XCTAssertEqual(tmRegex.replacingFirstMatch(in: s, range: s.charactersRange(offsetBy: 0..<4), replacement: .remove), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
         XCTAssertEqual(tmRegex.replacingAllMatches(in: s, options: [], range: s.range(of: "™")!.upperBound..<s.endIndex, replacement: .replaceWithString("😸")), "😊😾LL™abc 1™ <😍 😸の伝説 😸 is so awesome!>\n😸< 😸最高 3>😃zelda\r\n 😸")
         
         let result = tmRegex.replacingMatches(in: s, range: s.startIndex..<s.range(of: "\r\n")!.upperBound) { (idx, match) -> Match.Replacing in
@@ -262,3 +263,13 @@ class LLRegexTests: XCTestCase {
         XCTAssertEqual(options, Match.Options(adapted: [.reportProgress, .reportCompletion]))
     }
 }
+
+
+
+extension String {
+    
+    func charactersRange(offsetBy range: Range<Int>) -> Range<String.Index> {
+        return index(startIndex, offsetBy: range.lowerBound)..<index(startIndex, offsetBy: range.upperBound)
+    }
+}
+
