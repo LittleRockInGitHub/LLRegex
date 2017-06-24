@@ -16,7 +16,7 @@ let runtimeError = Regex("")    // Runtime error would be raised
 
 let invalid = try? Regex(pattern: "")   // nil returned
 
-let s = "123-45-6789-0-123-45-6789-0"
+let s = "123-45-6789-0-123-45-6789-01234"
 
 let subrange = s.characters.dropFirst(3).startIndex..<s.endIndex
 

@@ -60,7 +60,7 @@ let invalid = try? Regex(pattern: "")   // nil returned
  Method `matches(in:options:range:)` returns a sequence producing matches **lazily**, which is the only one for searching. All other variants were dropped thanks to the power of Sequence.
  
 ```swift
-let s = "123-45-6789-0-123-45-6789-0"
+let s = "123-45-6789-0-123-45-6789-01234"
 let subrange = s.characters.dropFirst(3).startIndex..<s.endIndex
 
 for match in numbers.matches(in: s) {
