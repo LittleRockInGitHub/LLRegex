@@ -104,13 +104,13 @@ Named capture group feature is enabled when `.namedCaptureGroups` is set.
 
 ```swift
 let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCaptureGroups)
-        let s = "Today is 2017-06-23."
-        
-        for m in named.matches(in: s) {
-            m.groups["year"]?.matched
-        }
-        
-        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017.
+let s = "Today is 2017-06-23."
+
+for m in named.matches(in: s) {
+    m.groups["year"]?.matched
+}
+
+named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017.
 ```  
 - Note: If the comment in pattern contains the notation of capture group, the detection for named capture group will fail.
 
