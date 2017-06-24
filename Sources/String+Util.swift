@@ -27,18 +27,6 @@ extension NSRange {
     }
 }
 
-
-extension String {
-    
-    func substring<R: _RangeProtocol>(withCharacterRange range: R) -> String where IndexDistance == R.Bound {
-        return substring(with: self.range(offsetBy: range))
-    }
-    
-    func range<R: _RangeProtocol>(offsetBy range: R) -> Range<String.Index> where IndexDistance == R.Bound {
-        return range.relative(to: characters)
-    }
-}
-
 extension String {
     
     var nsRange: NSRange {
