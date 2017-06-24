@@ -90,7 +90,7 @@ public struct Regex {
         self._regularExpression = re
         self._options = options
         
-        if options.contains(.namedCaptureGroups) {
+        if #available(iOS 9, *), options.contains(.namedCaptureGroups) {
             self.namedCaptureGroupsInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
         } else {
             self.namedCaptureGroupsInfo = [:]

@@ -52,6 +52,8 @@ class NamedCaptureGroupsTests: XCTestCase {
     }
     
     func testNamdCaptureGroupsTypes() {
+        
+        guard #available(iOS 9, *) else { return }
     
         XCTAssertEqual(Regex("\\d", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
         XCTAssertEqual(Regex("()", options: [.namedCaptureGroups]).namedCaptureGroupsInfo!.count, 0)
@@ -81,6 +83,8 @@ class NamedCaptureGroupsTests: XCTestCase {
     
     func testNamdCaptureGroups() {
         
+        guard #available(iOS 9, *) else { return }
+        
         let s = "123 normal NAMED (Nested) atomic non-capture 456"
         let regex = Regex("(?#comment)(?<!a)(?<=123) (?i)(NORMAL) (?<name>named) (\\((?<nested>nested)\\)) (?>atomic) (?:non-capture) (?=456)(?!a)", options: [.namedCaptureGroups])
         
@@ -94,6 +98,9 @@ class NamedCaptureGroupsTests: XCTestCase {
     }
     
     func testReplacement() {
+        
+        guard #available(iOS 9, *) else { return }
+        
         let date = "1978-12-24"
         let named = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))", options: .namedCaptureGroups)
         let nonNamed = Regex("((?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+))")
@@ -112,6 +119,8 @@ class NamedCaptureGroupsTests: XCTestCase {
     }
     
     func testComment() {
+    
+        guard #available(iOS 9, *) else { return }
         
         let s = "1234567890"
         let regex = Regex("(\\d{1,2})(?<suffix>\\d)(?x) # (\\d+)", options: .namedCaptureGroups)

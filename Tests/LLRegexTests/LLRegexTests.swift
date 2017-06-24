@@ -13,7 +13,6 @@ class LLRegexTests: XCTestCase {
     
     var tmRegex: Regex!
     var zeldaRegex: Regex!
-    var namedRegex: Regex!
     var s: String = "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™"
     
     override func setUp() {
@@ -22,7 +21,6 @@ class LLRegexTests: XCTestCase {
         
         tmRegex = Regex("((\\S)(\\S*)(\\S))™")
         zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])
-        namedRegex = Regex("(?<name>zelda|link)(?<brand>™)?", options: [.caseInsensitive, .namedCaptureGroups])
     }
     
     override func tearDown() {
@@ -157,31 +155,31 @@ class LLRegexTests: XCTestCase {
     
     func testPattern() {
     
-        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        XCTAssertEqual(zeldaRegex.pattern, "(zelda|link)(™)?")
         
         XCTAssertThrowsError(try zeldaRegex.setPattern(""))
         
         XCTAssertNoThrow(try zeldaRegex.setPattern("\\d+"))
         
-        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        XCTAssertEqual(zeldaRegex.options, [.caseInsensitive])
         
     }
     
     func testOptions() {
         
-        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        XCTAssertEqual(zeldaRegex.options, [.caseInsensitive])
         
-        namedRegex.options.remove(.namedCaptureGroups)
+        zeldaRegex.options.remove(.caseInsensitive)
         
-        XCTAssertEqual(namedRegex.options, [.caseInsensitive])
-        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        XCTAssertEqual(zeldaRegex.options, [])
+        XCTAssertEqual(zeldaRegex.pattern, "(zelda|link)(™)?")
         
-        namedRegex.options.insert(.namedCaptureGroups)
-        XCTAssertEqual(namedRegex.options, [.caseInsensitive, .namedCaptureGroups])
-        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        zeldaRegex.options.insert(.namedCaptureGroups)
+        XCTAssertEqual(zeldaRegex.options, [.namedCaptureGroups])
+        XCTAssertEqual(zeldaRegex.pattern, "(zelda|link)(™)?")
         
-        namedRegex.options = [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups]
-        XCTAssertEqual(namedRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
+        zeldaRegex.options = [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups]
+        XCTAssertEqual(zeldaRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
     }
     
     func testRegularExpression() {
