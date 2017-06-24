@@ -43,8 +43,7 @@ extension NSRange {
     
 }
 
-#if swift(>=3.2)
-#else
+#if !swift(>=3.2)
     extension NSRange : Equatable {
         public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
             return NSEqualRanges(lhs, rhs)

@@ -192,6 +192,7 @@ class LLRegexTests: XCTestCase {
         XCTAssertEqual(tmRegex.options, [.allowCommentsAndWhitespace, .useUnixLineSeparators])
     }
     
+    #if !SWIFT_PACKAGE
     func testRegexPerformance() {
         let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
         
@@ -218,6 +219,7 @@ class LLRegexTests: XCTestCase {
         
         XCTAssertLessThan(interval1, interval2 * 10)
     }
+    #endif
     
     func testRegexOptions() {
         var regex = Regex("\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
