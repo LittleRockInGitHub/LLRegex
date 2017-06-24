@@ -13,6 +13,7 @@ class LLRegexTests: XCTestCase {
     
     var tmRegex: Regex!
     var zeldaRegex: Regex!
+    var namedRegex: Regex!
     var s: String = "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™"
     
     override func setUp() {
@@ -21,6 +22,7 @@ class LLRegexTests: XCTestCase {
         
         tmRegex = Regex("((\\S)(\\S*)(\\S))™")
         zeldaRegex = Regex("(zelda|link)(™)?", options: [.caseInsensitive])
+        namedRegex = Regex("(?<name>zelda|link)(?<brand>™)?", options: [.caseInsensitive, .namedCaptureGroups])
     }
     
     override func tearDown() {
@@ -54,17 +56,18 @@ class LLRegexTests: XCTestCase {
     
     func testMatchRange() {
         
-        var range = 0..<5
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 1)
+        var range: Range<Int> = 0..<5
+        print(s.substring(with: s.charactersRange(offsetBy: range)))
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 1)
         
         range = 0..<4
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 0)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 0)
         
         range = 20..<73
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 4)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 4)
         
         range = 20..<72
-        XCTAssertEqual(tmRegex.matches(in: s, range: s.range(offsetBy: range)).all.count, 3)
+        XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 3)
     }
     
     
@@ -98,7 +101,7 @@ class LLRegexTests: XCTestCase {
     
     func testReplaceRange() {
         
-        XCTAssertEqual(tmRegex.replacingFirstMatch(in: s, range: s.range(offsetBy: 0..<4), replacement: .remove), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
+        XCTAssertEqual(tmRegex.replacingFirstMatch(in: s, range: s.charactersRange(offsetBy: 0..<4), replacement: .remove), "😊😾LL™abc 1™ <😍 ゼルダ™の伝説 Zelda™ is so awesome!>\nll™< 塞尔达™最高 3>😃zelda\r\n Link™")
         XCTAssertEqual(tmRegex.replacingAllMatches(in: s, options: [], range: s.range(of: "™")!.upperBound..<s.endIndex, replacement: .replaceWithString("😸")), "😊😾LL™abc 1™ <😍 😸の伝説 😸 is so awesome!>\n😸< 😸最高 3>😃zelda\r\n 😸")
         
         let result = tmRegex.replacingMatches(in: s, range: s.startIndex..<s.range(of: "\r\n")!.upperBound) { (idx, match) -> Match.Replacing in
@@ -152,6 +155,44 @@ class LLRegexTests: XCTestCase {
         XCTAssertNotNil(try? Regex(pattern: "()"))
     }
     
+    func testPattern() {
+    
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        XCTAssertThrowsError(try zeldaRegex.setPattern(""))
+        
+        XCTAssertNoThrow(try zeldaRegex.setPattern("\\d+"))
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
+    }
+    
+    func testOptions() {
+        
+        XCTAssertEqual(namedRegex.options, [.namedCaptureGroups, .caseInsensitive])
+        
+        namedRegex.options.remove(.namedCaptureGroups)
+        
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options.insert(.namedCaptureGroups)
+        XCTAssertEqual(namedRegex.options, [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(namedRegex.pattern, "(?<name>zelda|link)(?<brand>™)?")
+        
+        namedRegex.options = [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups]
+        XCTAssertEqual(namedRegex.options, [.allowCommentsAndWhitespace, .anchorsMatchLines, .namedCaptureGroups])
+    }
+    
+    func testRegularExpression() {
+    
+        tmRegex.regularExpression = try! NSRegularExpression(pattern: "\\d+", options: [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+        
+        XCTAssertEqual(tmRegex.pattern, "\\d+")
+        XCTAssertEqual(tmRegex.options, [.allowCommentsAndWhitespace, .useUnixLineSeparators])
+    }
+    
+    #if !SWIFT_PACKAGE
     func testRegexPerformance() {
         let content: String = try! String(contentsOf: Bundle(for: LLRegexTests.self).url(forResource: "LargeContent", withExtension: "txt")!)
         
@@ -178,4 +219,59 @@ class LLRegexTests: XCTestCase {
         
         XCTAssertLessThan(interval1, interval2 * 10)
     }
+    #endif
+    
+    func testRegexOptions() {
+        var regex = Regex("\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        XCTAssertEqual(regex.options,  [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.options.remove(.caseInsensitive)
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        XCTAssertEqual(regex.options.toAdapted(),  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        try! regex.setPattern("\\d*")
+        XCTAssertEqual(regex.options,  [.allowCommentsAndWhitespace, .anchorsMatchLines, .
+            dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex = Regex(regularExpression: try! NSRegularExpression(pattern: "\\d+", options: [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators]))
+        XCTAssertEqual(regex.options, [.caseInsensitive, .allowCommentsAndWhitespace, .anchorsMatchLines, .dotMatchesLineSeparators, .ignoreMetacharacters, .useUnicodeWordBoundaries, .useUnixLineSeparators])
+        
+        regex.regularExpression = try! NSRegularExpression(pattern: "\\d*", options: .caseInsensitive)
+        XCTAssertEqual(regex.options, .caseInsensitive)
+        
+        regex = Regex("\\d+", options: [.caseInsensitive, .namedCaptureGroups])
+        XCTAssertEqual(regex.options, [.caseInsensitive, .namedCaptureGroups])
+        
+        XCTAssertEqual(regex.regularExpression.options, [.caseInsensitive])
+        
+    }
+    
+    func testMatchOptions() {
+        
+        var options: Match.Options = [.anchored, .withTransparentBounds, .withoutAnchoringBounds]
+        
+        XCTAssertEqual(options, [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        
+        XCTAssertEqual(options.toAdapted(), [.anchored, .withTransparentBounds, .withoutAnchoringBounds])
+        
+        options = []
+        XCTAssertEqual(options.toAdapted(), [])
+        
+        XCTAssertEqual(options, Match.Options(adapted: [.reportProgress, .reportCompletion]))
+    }
 }
+
+
+
+extension String {
+    
+    func charactersRange(offsetBy range: Range<Int>) -> Range<String.Index> {
+        return index(startIndex, offsetBy: range.lowerBound)..<index(startIndex, offsetBy: range.upperBound)
+    }
+}
+

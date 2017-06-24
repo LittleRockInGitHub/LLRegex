@@ -33,7 +33,7 @@ class RegexTests: XCTestCase {
     
     func testMatch() {
         
-        let expected = regex.regularExpression.matches(in: s, options: matchOptions, range: s.nsRange).flatMap { result in
+        let expected = regex.regularExpression.matches(in: s, options: matchOptions.toAdapted(), range: s.nsRange).flatMap { result in
             return result.range.toRange(in: s).map({ s.substring(with: $0) })
         }
         
@@ -45,7 +45,7 @@ class RegexTests: XCTestCase {
     
     func testRaplace() {
         
-        let expected = regex.regularExpression.stringByReplacingMatches(in: s, options: matchOptions, range: s.nsRange, withTemplate: template)
+        let expected = regex.regularExpression.stringByReplacingMatches(in: s, options: matchOptions.toAdapted(), range: s.nsRange, withTemplate: template)
         
         let result = regex.replacingAllMatches(in: s, options: matchOptions, replacement: .replaceWithTemplate(template))
         

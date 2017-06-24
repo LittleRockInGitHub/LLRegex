@@ -16,7 +16,7 @@ let runtimeError = Regex("")    // Runtime error would be raised
 
 let invalid = try? Regex(pattern: "")   // nil returned
 
-let s = "123-45-6789-0-123-45-6789-0"
+let s = "123-45-6789-0-123-45-6789-01234"
 
 let subrange = s.characters.dropFirst(3).startIndex..<s.endIndex
 
@@ -54,6 +54,19 @@ struct Playground {
             let replacement = first.replacement(withTemplate: "$3$2$1")
             
         }
+    }
+    
+    
+    public func namedCaptureGroups() {
+    
+        let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCaptureGroups)
+        let s = "Today is 2017-06-23."
+        
+        for m in named.matches(in: s) {
+            m.groups["year"]?.matched
+        }
+        
+        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}"))
     }
     
     public func replace() {

@@ -26,7 +26,7 @@ class ReturnRegexTests: RegexTests {
     
     override func testMatch() {
         
-        let expected = regex.regularExpression.numberOfMatches(in: s, options: matchOptions, range: s.nsRange) - 1
+        let expected = regex.regularExpression.numberOfMatches(in: s, options: matchOptions.toAdapted(), range: s.nsRange) - 1
         let result = regex.matches(in: s, options: matchOptions).all.count
         
         XCTAssertEqual(result, expected)

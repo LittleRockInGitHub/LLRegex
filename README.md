@@ -10,10 +10,15 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ## Features
  * Value Semantics
  * Enumerates matches with Sequence
+ * Named capture group
  * Range supported (NSRange eliminated)
  * Regex Options, Match Options
  * Find & Replace with flexibility
  * String matching, replacing, splitting
+
+## Communication
+* If you **found a bug**, open an issue, typically with related pattern.
+* If you **have a feature request**, open an issue.
  
 ## Requirements
 
@@ -26,7 +31,7 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 ### CocoaPods
 
 ```ruby
-pod 'LLRegex', '~> 1.1'
+pod 'LLRegex', '~> 1.2'
 ```
 
 ### Swift Package Manager
@@ -55,7 +60,7 @@ let invalid = try? Regex(pattern: "")   // nil returned
  Method `matches(in:options:range:)` returns a sequence producing matches **lazily**, which is the only one for searching. All other variants were dropped thanks to the power of Sequence.
  
 ```swift
-let s = "123-45-6789-0-123-45-6789-0"
+let s = "123-45-6789-0-123-45-6789-01234"
 let subrange = s.characters.dropFirst(3).startIndex..<s.endIndex
 
 for match in numbers.matches(in: s) {
@@ -93,6 +98,21 @@ if let first = numbers.matches(in: s).first {
     let replacement = first.replacement(withTemplate: "$3$2$1")     // Replacement with template
 }
 ```
+  
+### Named Capture Group
+Named capture group feature is enabled when `.namedCaptureGroups` is set.
+
+```swift
+let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCaptureGroups)
+let s = "Today is 2017-06-23."
+
+for m in named.matches(in: s) {
+    m.groups["year"]?.matched
+}
+
+named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}")) // Today is 06/23/2017.
+```  
+- Note: If the comment in pattern contains the notation of capture group, the detection for named capture group will fail.
 
 ### Replacing
 

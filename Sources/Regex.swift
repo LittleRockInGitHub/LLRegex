@@ -8,14 +8,61 @@
 
 import Foundation
 
+
 /// A type that is used to reprensent and apply regular expreesion to Unicode strings, which wrapps NSRegularExpression.
 public struct Regex {
     
     /// Options of Regex.
-    public typealias Options = NSRegularExpression.Options
+    public struct Options : OptionSetAdapting {
+        
+        typealias Adapted = NSRegularExpression.Options
+        
+        private static let reserved: UInt = 16
+    
+        public let rawValue: UInt
+        
+        public init(rawValue: UInt) {
+            self.rawValue = rawValue
+        }
+        
+        /// Same as NSRegularExpression.Option.caseInsensitive
+        public static let caseInsensitive = Options(adapted: .caseInsensitive)
+        /// Same as NSRegularExpression.Option.allowCommentsAndWhitespace
+        public static let allowCommentsAndWhitespace = Options(adapted: .allowCommentsAndWhitespace)
+        /// Same as NSRegularExpression.Option.ignoreMetacharacters
+        public static let ignoreMetacharacters = Options(adapted: .ignoreMetacharacters)
+        /// Same as NSRegularExpression.Option.dotMatchesLineSeparators
+        public static let dotMatchesLineSeparators = Options(adapted: .dotMatchesLineSeparators)
+        /// Same as NSRegularExpression.Option.anchorsMatchLines
+        public static let anchorsMatchLines = Options(adapted: .anchorsMatchLines)
+        /// Same as NSRegularExpression.Option.useUnixLineSeparators
+        public static let useUnixLineSeparators = Options(adapted: .useUnixLineSeparators)
+        /// Same as NSRegularExpression.Option.useUnicodeWordBoundaries
+        public static let useUnicodeWordBoundaries = Options(adapted: .useUnicodeWordBoundaries)
+        /// Enables named capture groups feature
+        public static let namedCaptureGroups = Options(rawValue: 1 << reserved)
+        
+        static let adaptedOptions: NSRegularExpression.Options = [.caseInsensitive,
+                                                                  .allowCommentsAndWhitespace,
+                                                                  .ignoreMetacharacters,
+                                                                  .dotMatchesLineSeparators,
+                                                                  .anchorsMatchLines,
+                                                                  .useUnixLineSeparators,
+                                                                  .useUnicodeWordBoundaries]
+        
+    }
+    
+    private let _regularExpression: NSRegularExpression
     
     /// Wrapped NSRegularExpression.
-    public var regularExpression: NSRegularExpression
+    public var regularExpression: NSRegularExpression {
+        get {
+            return _regularExpression
+        }
+        set {
+            self = Regex(regularExpression: newValue)
+        }
+    }
     
     /**
      Creates a `Regex` with unchecked string literal and options. Runtime error is raised if the unchecked pattern is invalid.
@@ -39,7 +86,15 @@ public struct Regex {
      - throws: An error if failed.
      */
     public init(pattern: String, options: Options = []) throws {
-        self.regularExpression = try NSRegularExpression(pattern: pattern, options: options)
+        let re = try NSRegularExpression(pattern: pattern, options: options.toAdapted())
+        self._regularExpression = re
+        self._options = options
+        
+        if options.contains(.namedCaptureGroups) {
+            self.namedCaptureGroupsInfo = extractNamedCaptureGroups(in: pattern, expectedGroupsCount: re.numberOfCaptureGroups)
+        } else {
+            self.namedCaptureGroupsInfo = [:]
+        }
     }
     
     /**
@@ -49,7 +104,9 @@ public struct Regex {
      */
     
     public init(regularExpression: NSRegularExpression) {
-        self.regularExpression = regularExpression
+        self._regularExpression = regularExpression
+        self._options = Options(adapted: regularExpression.options)
+        self.namedCaptureGroupsInfo = [:]
     }
     
     
@@ -62,23 +119,26 @@ public struct Regex {
      - throws: An error if pattern is invalid.
      */
     public mutating func setPattern(_ pattern: String) throws {
-        regularExpression = try NSRegularExpression(pattern: pattern, options: regularExpression.options)
+        self = try Regex(pattern: pattern, options: self.options)
     }
     
+    private let _options: Options
     
     /// The options value.
     public var options: Options {
         get {
-            return regularExpression.options
+            return _options
         }
         set {
-            regularExpression = try! NSRegularExpression(pattern: regularExpression.pattern, options: newValue)
+            self = try! Regex(pattern: pattern, options: newValue)
         }
     }
     
     
     /// The number of capture groups.
     public var numberOfCaptureGroups: Int { return regularExpression.numberOfCaptureGroups }
+    
+    let namedCaptureGroupsInfo: [String: Int]?
     
 }
 
@@ -122,8 +182,8 @@ extension Match {
     public struct Iterator: IteratorProtocol {
     
         let searched: String
-        let regex: NSRegularExpression!
-        let options: Options
+        let regex: Regex!
+        let options: NSRegularExpression.MatchingOptions
         let range: NSRange?
         
         private var lastMatched: NSRange?
@@ -136,16 +196,11 @@ extension Match {
             self.regex = nil
         }
         
-        init(regex: NSRegularExpression, searched: String, options: Options, nsRange: NSRange) {
+        init(regex: Regex, searched: String, options: Options, nsRange: NSRange) {
             self.regex = regex
             self.searched = searched
             
-            var options = options
-            
-            options.remove(.reportProgress)
-            options.insert(.reportCompletion)
-            
-            self.options = options
+            self.options = options.toAdapted().union(.reportCompletion)
             
             self.range = nsRange
             self.current = nsRange
@@ -153,7 +208,7 @@ extension Match {
         
         init(regex: Regex, searched: String, options: Options, range: Range<String.Index>? = nil) {
             
-            self.init(regex: regex.regularExpression, searched: searched, options: options, nsRange: (range ?? searched.startIndex..<searched.endIndex).toNSRange(in: searched))
+            self.init(regex: regex, searched: searched, options: options, nsRange: (range ?? searched.startIndex..<searched.endIndex).toNSRange(in: searched))
         }
         
         public mutating func next() -> Match? {
@@ -162,7 +217,7 @@ extension Match {
             
             var match: Match?
             
-            regex.enumerateMatches(in: searched, options: options, range: current) { (r, flags, stop) in
+            regex.regularExpression.enumerateMatches(in: searched, options: options, range: current) { (r, flags, stop) in
                 
                 guard let r = r else {
                     stop.pointee = true
@@ -170,7 +225,7 @@ extension Match {
                     return
                 }
                 
-                if lastMatched != r.range, let m = Match(searched: searched, result: r)  {
+                if lastMatched != r.range, let m = Match(searched: searched, result: r, regex: regex)  {
                     stop.pointee = true
                     match = m
                 }
@@ -220,7 +275,7 @@ extension Match.Iterator {
     
         guard let range = self.range else { return [] }
         
-        return self.regex.matches(in: searched, options: options, range: range).flatMap({ Match(searched: searched, result: $0)
+        return self.regex.regularExpression.matches(in: searched, options: options, range: range).flatMap({ Match(searched: searched, result: $0, regex: regex)
         })
     }
 }
@@ -392,3 +447,29 @@ extension String : RegexConvertible {
     
     public var pattern: String { return "(?:\(self))" }
 }
+
+// MARK: NamedCaptureGroup
+
+func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> [String: Int]? {
+    struct RE {
+        static let captureGroup: Regex = Regex("(\\\\*+)\\((?!\\?)")
+        static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
+    }
+    
+    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    
+    guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return nil }
+    
+    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
+    
+    var reval = [String: Int]()
+    
+    for (idx, match) in allGroups.enumerated() {
+        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
+        reval[name] = idx + 1
+    }
+    
+    return reval
+}
+
