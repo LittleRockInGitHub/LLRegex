@@ -56,6 +56,19 @@ struct Playground {
         }
     }
     
+    
+    public func namedCaptureGroups() {
+    
+        let named = Regex("(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)", options: .namedCaptureGroups)
+        let s = "Today is 2017-06-23."
+        
+        for m in named.matches(in: s) {
+            m.groups["year"]?.matched
+        }
+        
+        named.replacingAllMatches(in: s, replacement: .replaceWithTemplate("${month}/${day}/${year}"))
+    }
+    
     public func replace() {
         
         numbers.replacingFirstMatch(in: s, replacement: .remove)
