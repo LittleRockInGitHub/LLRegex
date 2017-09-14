@@ -34,11 +34,19 @@ extension String {
     }
     
     func index(fromUTF16Offset offset: Int) -> String.Index? {
-        return Index(encodedOffset: offset).samePosition(in: utf16)
+        #if swift(>=3.2)
+            return Index(encodedOffset: offset).samePosition(in: utf16)
+        #else
+            return UTF16View.Index(offset).samePosition(in: self)
+        #endif
     }
     
     func utf16Offset(fromIndex index: String.Index) -> Int {
-        return index.encodedOffset
+        #if swift(>=3.2)
+            return index.encodedOffset
+        #else
+            return utf16.startIndex.distance(to: index.samePosition(in: utf16))
+        #endif
     }
     
 }
