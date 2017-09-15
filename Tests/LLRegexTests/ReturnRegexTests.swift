@@ -29,9 +29,14 @@ class ReturnRegexTests: RegexTests {
         let expected = regex.regularExpression.numberOfMatches(in: s, options: matchOptions.toAdapted(), range: s.nsRange)
         let result = regex.matches(in: s, options: matchOptions).all.count
         
-        XCTAssertEqual(result, expected)
-        XCTAssertEqual(result, 2)
-        XCTAssertEqual(regex.matches(in: s, options: matchOptions).first?.matched, "\r")
+        #if swift(>=3.2)
+            XCTAssertEqual(result, expected)
+            XCTAssertEqual(result, 2)
+            XCTAssertEqual(regex.matches(in: s, options: matchOptions).first?.matched, "\r")
+        #else
+            XCTAssertEqual(result, expected - 1)
+            XCTAssertEqual(result, 1)
+        #endif
     }
     
     override func testRaplace() {
