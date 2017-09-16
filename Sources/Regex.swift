@@ -356,19 +356,10 @@ extension Regex {
      */
     public func replacingMatches(in string: String, options: Match.Options = [], range: Range<String.Index>? = nil, replacing: (_ idx: Int, _ match: Match) throws -> Match.Replacing) rethrows -> String {
         
-        var idx = 0
-        
-        var iterator = Match.Iterator(regex: self, searched: string, options: options, range: range)
-        
         var replacements: [(Range<String.Index>, String)] = []
         
+        Iterating: for (idx, match) in IteratorSequence(Match.Iterator(regex: self, searched: string, options: options, range: range)).enumerated() {
         
-        Iterating: while let match = iterator.next() {
-            
-            defer {
-                idx += 1
-            }
-            
             let replacement: String
             
             switch try replacing(idx, match) {
@@ -385,12 +376,12 @@ extension Regex {
             }
             
             if let range = match.range {
-                replacements.insert((range, replacement), at: 0)
+                replacements.append((range, replacement))
             }
         }
         
         var reval = string
-        replacements.forEach { reval.replaceSubrange($0.0, with: $0.1) }
+        replacements.reversed().forEach { reval.replaceSubrange($0.0, with: $0.1) }
         
         return reval
     }
