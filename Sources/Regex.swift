@@ -356,19 +356,10 @@ extension Regex {
      */
     public func replacingMatches(in string: String, options: Match.Options = [], range: Range<String.Index>? = nil, replacing: (_ idx: Int, _ match: Match) throws -> Match.Replacing) rethrows -> String {
         
-        var idx = 0
-        
-        var iterator = Match.Iterator(regex: self, searched: string, options: options, range: range)
-        
         var replacements: [(Range<String.Index>, String)] = []
         
+        Iterating: for (idx, match) in IteratorSequence(Match.Iterator(regex: self, searched: string, options: options, range: range)).enumerated() {
         
-        Iterating: while let match = iterator.next() {
-            
-            defer {
-                idx += 1
-            }
-            
             let replacement: String
             
             switch try replacing(idx, match) {
@@ -384,11 +375,13 @@ extension Regex {
                 replacement = match.replacement(withTemplate: template)
             }
             
-            replacements.insert((match.range, replacement), at: 0)
+            if let range = match.range {
+                replacements.append((range, replacement))
+            }
         }
         
         var reval = string
-        replacements.forEach { reval.replaceSubrange($0.0, with: $0.1) }
+        replacements.reversed().forEach { reval.replaceSubrange($0.0, with: $0.1) }
         
         return reval
     }
@@ -456,18 +449,18 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
         static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
     }
     
-    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
-    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    let captureGroups = RE.captureGroup.matches(in: pattern).filter { $0.groups[1].matched.utf16.count % 2 == 0 }
+    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { $0.groups[1].matched.utf16.count % 2 == 0 }
     
     guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return nil }
     
-    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
+    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range!.lowerBound < $1.range!.lowerBound }
     
     var reval = [String: Int]()
     
     for (idx, match) in allGroups.enumerated() {
-        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
-        reval[name] = idx + 1
+        guard match.regex == RE.namedCaptureGroup else { continue }
+        reval[match.groups[2].matched] = idx + 1
     }
     
     return reval

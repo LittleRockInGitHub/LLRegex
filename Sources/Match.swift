@@ -21,20 +21,39 @@ public protocol MatchProtocol {
     var matched: String { get }
     
     /// The matched range.
-    var range: Range<String.Index> { get }
+    var range: Range<String.Index>? { get }
 }
 
 extension MatchProtocol {
     
     public var matched: String {
-        return searched.substring(with: range)
+        return range.map { String(searched[$0]) } ?? ""
     }
 }
+
+
+protocol _NSRangeBasedMatch : MatchProtocol {
+    
+    var nsRange: NSRange { get }
+}
+
+extension _NSRangeBasedMatch {
+    
+    public var range: Range<String.Index>? {
+        return nsRange.toRange(in: searched)
+    }
+    
+    public var matched: String {
+        guard nsRange.location != NSNotFound else { return ""}
+        return (searched as NSString).substring(with: nsRange) as String
+    }
+}
+
 
 // MARK: Match
 
 /// A type that represents a match searched by regular expression.
-public struct Match : MatchProtocol {
+public class Match : _NSRangeBasedMatch {
     
     /// Options for matching
     public struct Options : OptionSetAdapting {
@@ -65,32 +84,31 @@ public struct Match : MatchProtocol {
     /// The wrapped NSTextCheckingResult.
     public let result: NSTextCheckingResult
     
+    var nsRange: NSRange {
+        return result.range
+    }
+    
     init?(searched: String, result: NSTextCheckingResult, regex: Regex) {
-        
-        guard let range = result.range.toRange(in: searched) else { return nil }
-        
         self.searched = searched
         self.result = result
-        self.range = range
         self.regex = regex
+        
+        self.groups = CaptureGroups(match: self)
     }
     
     /// The searching regex.
-    public let regex: Regex
+    public let regex: Regex!
     
-    /// The matched range.
-    public let range: Range<String.Index>
+    /// The captures groups.
+    private(set) public var groups: CaptureGroups!
 }
 
 extension Match {
     
-    /// The captures groups.
-    public var groups: CaptureGroups { return CaptureGroups(match: self) }
-    
     
     /// A type thats represents capture group in a match.
-    public struct CaptureGroup {
-        
+    public struct CaptureGroup : _NSRangeBasedMatch {
+    
         // The index in the match.
         public let index: Int
         
@@ -99,22 +117,22 @@ extension Match {
         // The searched string.
         public var searched: String { return match.searched }
         
-        // The range in the searched string.
-        public var range: Range<String.Index>? {
-            return match.result.rangeAt(index).toRange(in: searched)
+        var nsRange: NSRange {
+            #if swift(>=4)
+                return match.result.range(at: index)
+            #else
+                return match.result.rangeAt(index)
+            #endif
         }
         
-        // The matched string.
-        public var matched: String? { return range.map { searched.substring(with: $0) } }
-        
-        init(index: Int, match: Match) {
+        fileprivate init(index: Int, match: Match) {
             self.match = match
             self.index = index
         }
     }
     
     /// A collection that represents caputure groups.
-    public struct CaptureGroups : RandomAccessCollection {
+    public class CaptureGroups : RandomAccessCollection {
         
         private let match: Match
         
@@ -123,7 +141,6 @@ extension Match {
         public typealias Index = Int
         
         public subscript(index: Int) -> CaptureGroup {
-            
             return CaptureGroup(index: index, match: match)
         }
         
@@ -131,7 +148,7 @@ extension Match {
             return match.regex.namedCaptureGroupsInfo?[name].map { self[$0] }
         }
         
-        init(match: Match) {
+        fileprivate init(match: Match) {
             self.match = match
         }
         
@@ -164,9 +181,9 @@ extension Match {
             
             template = RE.named.replacingMatches(in: template) { (_, match) -> Match.Replacing in
                 
-                guard let prefix = match.groups[1].matched, prefix.utf16.count % 2 == 0 else { return .keep }
+                guard match.groups[1].matched.utf16.count % 2 == 0 else { return .keep }
                 
-                if let name = match.groups[2].matched, let idx = info[name] {
+                if let idx = info[match.groups[2].matched] {
                     return .replaceWithTemplate("$1\\$\(idx)")
                 } else {
                     return .remove
