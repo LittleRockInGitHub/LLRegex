@@ -34,7 +34,7 @@ class RegexTests: XCTestCase {
     func testMatch() {
         
         let expected = regex.regularExpression.matches(in: s, options: matchOptions.toAdapted(), range: s.nsRange).flatMap { result in
-            return result.range.toRange(in: s).map({ s.substring(with: $0) })
+            return result.range.toRange(in: s).map({ String(s[$0]) })
         }
         
         let result = regex.matches(in: s, options: matchOptions).map { $0.matched }

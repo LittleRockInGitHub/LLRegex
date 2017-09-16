@@ -126,23 +126,23 @@ extension String {
      - parameter omittingEmptyString: If true, only nonempty strings are returned. 'true' by default.
      - returns: The strings, splits from 'self'.
     */
-    public func split(seperator: RegexConvertible, maxSplits: Int = Int.max, omittingEmptyString: Bool = true) -> [String] {
+    public func split(seperator: RegexConvertible, maxSplits: Int = Int.max, omittingEmptyString: Bool = true) -> [Substring] {
         
         precondition(maxSplits >= 0)
         
-        var reval: [String] = []
+        var reval: [Substring] = []
         
         let appendRange: (Range<String.Index>) -> Void
         
         if omittingEmptyString {
             appendRange = {
                 if !$0.isEmpty {
-                    reval.append(self.substring(with: $0))
+                    reval.append(self[$0])
                 }
             }
         } else {
             appendRange = {
-                reval.append(self.substring(with: $0))
+                reval.append(self[$0])
             }
         }
         
@@ -152,11 +152,11 @@ extension String {
             
             for (idx, match) in regex.matches(in: self).enumerated() {
                 
-                guard idx < maxSplits else { break }
+                guard idx < maxSplits, let range = match.range else { break }
                 
-                appendRange(current..<match.range.lowerBound)
+                appendRange(current..<range.lowerBound)
                 
-                current = match.range.upperBound
+                current = range.upperBound
             }
         }
         
