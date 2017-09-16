@@ -82,7 +82,7 @@ for case let match in subrangeMatches.dropFirst(1) where match.matched != "6789"
 }
 ```
 
-- Important: If the matched range is unable to be converted to `Range<String.Index>`, the match is ignored . Try searching "\r" in "\r\n".
+- Important: If the matched range is unable to be converted to `Range<String.Index>`, the match is ignored.
 
 ### Match & Capture Groups
 
