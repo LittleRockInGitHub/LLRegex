@@ -55,7 +55,7 @@ class LLRegexTests: XCTestCase {
     func testMatchRange() {
         
         var range: Range<Int> = 0..<5
-        print(s.substring(with: s.charactersRange(offsetBy: range)))
+        
         XCTAssertEqual(tmRegex.matches(in: s, range: s.charactersRange(offsetBy: range)).all.count, 1)
         
         range = 0..<4

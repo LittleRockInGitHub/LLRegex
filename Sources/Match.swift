@@ -27,7 +27,7 @@ public protocol MatchProtocol {
 extension MatchProtocol {
     
     public var matched: String {
-        return searched.substring(with: range)
+        return String(searched[range])
     }
 }
 
@@ -105,7 +105,7 @@ extension Match {
         }
         
         // The matched string.
-        public var matched: String? { return range.map { searched.substring(with: $0) } }
+        public var matched: String? { return range.map { String(searched[$0]) } }
         
         init(index: Int, match: Match) {
             self.match = match
