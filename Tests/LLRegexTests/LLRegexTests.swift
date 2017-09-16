@@ -210,7 +210,7 @@ class LLRegexTests: XCTestCase {
             
             date = Date()
             let nsContent: NSString = content as NSString
-            _ = nsRegex.matches(in: content, range: NSRange(0..<nsContent.length)).map({ nsContent.substring(with: $0.rangeAt(1)) as String })
+            _ = nsRegex.matches(in: content, range: NSRange(0..<nsContent.length)).map({ nsContent.substring(with: $0.range(at: 1)) as String })
             let interval2 = Date().timeIntervalSince(date)
             result.append(interval1 / interval2)
         }

@@ -21,7 +21,7 @@ extension NSRange {
     
     func toRange(in string: String) -> Range<String.Index>? {
         
-        guard let range = self.toRange(), let start = string.index(fromUTF16Offset: range.lowerBound), let end = string.index(fromUTF16Offset: range.upperBound) else { return nil }
+        guard let range = Range(self), let start = string.index(fromUTF16Offset: range.lowerBound), let end = string.index(fromUTF16Offset: range.upperBound) else { return nil }
         
         return start..<end
     }

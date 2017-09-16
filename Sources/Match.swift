@@ -101,7 +101,7 @@ extension Match {
         
         // The range in the searched string.
         public var range: Range<String.Index>? {
-            return match.result.rangeAt(index).toRange(in: searched)
+            return match.result.range(at: index).toRange(in: searched)
         }
         
         // The matched string.
