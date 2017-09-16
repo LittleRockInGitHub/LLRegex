@@ -458,8 +458,8 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
         static let namedCaptureGroup: Regex = Regex("(\\\\*+)\\(\\?<(\\w+)>")
     }
     
-    let captureGroups = RE.captureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
-    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { ($0.groups[1].matched ?? "").utf16.count % 2 == 0 }
+    let captureGroups = RE.captureGroup.matches(in: pattern).filter { $0.groups[1].matched.utf16.count % 2 == 0 }
+    let namedCaptureGroups = RE.namedCaptureGroup.matches(in: pattern).filter { $0.groups[1].matched.utf16.count % 2 == 0 }
     
     guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return nil }
     
@@ -468,8 +468,8 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
     var reval = [String: Int]()
     
     for (idx, match) in allGroups.enumerated() {
-        guard match.regex == RE.namedCaptureGroup, let name = match.groups[2].matched else { continue }
-        reval[name] = idx + 1
+        guard match.regex == RE.namedCaptureGroup else { continue }
+        reval[match.groups[2].matched] = idx + 1
     }
     
     return reval

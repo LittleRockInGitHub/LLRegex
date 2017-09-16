@@ -94,7 +94,7 @@ extension Match {
     
     
     /// A type thats represents capture group in a match.
-    public struct CaptureGroup {
+    public struct CaptureGroup : MatchProtocol {
         
         // The index in the match.
         public let index: Int
@@ -108,9 +108,6 @@ extension Match {
         public var range: Range<String.Index>? {
             return match.result.range(at: index).toRange(in: searched)
         }
-        
-        // The matched string.
-        public var matched: String? { return range.map { String(searched[$0]) } }
         
         init(index: Int, match: Match) {
             self.match = match
@@ -169,9 +166,9 @@ extension Match {
             
             template = RE.named.replacingMatches(in: template) { (_, match) -> Match.Replacing in
                 
-                guard let prefix = match.groups[1].matched, prefix.utf16.count % 2 == 0 else { return .keep }
+                guard match.groups[1].matched.utf16.count % 2 == 0 else { return .keep }
                 
-                if let name = match.groups[2].matched, let idx = info[name] {
+                if let idx = info[match.groups[2].matched] {
                     return .replaceWithTemplate("$1\\$\(idx)")
                 } else {
                     return .remove

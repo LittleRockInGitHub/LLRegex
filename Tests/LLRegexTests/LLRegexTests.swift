@@ -91,7 +91,7 @@ class LLRegexTests: XCTestCase {
     
         let result = tmRegex.replacingMatches(in: s) { (idx, match) -> Match.Replacing in
             
-            return .replaceWithTemplate("(\(idx + 1): $1, \(String(match.groups[1].matched!.characters.reversed())))")
+            return .replaceWithTemplate("(\(idx + 1): $1, \(String(match.groups[1].matched.characters.reversed())))")
         }
         
         XCTAssertEqual(result, "(1: 😊😾LL, LL😾😊)abc 1™ <😍 (2: ゼルダ, ダルゼ)の伝説 (3: Zelda, adleZ) is so awesome!>\n(4: ll, ll)< (5: 塞尔达, 达尔塞)最高 3>😃zelda\r\n (6: Link, kniL)")
@@ -104,7 +104,7 @@ class LLRegexTests: XCTestCase {
         
         let result = tmRegex.replacingMatches(in: s, range: s.startIndex..<s.range(of: "\r\n")!.upperBound) { (idx, match) -> Match.Replacing in
             
-            return .replaceWithTemplate("(\(idx + 1): $1, \(String(match.groups[1].matched!.characters.reversed())))")
+            return .replaceWithTemplate("(\(idx + 1): $1, \(String(match.groups[1].matched.characters.reversed())))")
         }
         
         XCTAssertEqual(result, "(1: 😊😾LL, LL😾😊)abc 1™ <😍 (2: ゼルダ, ダルゼ)の伝説 (3: Zelda, adleZ) is so awesome!>\n(4: ll, ll)< (5: 塞尔达, 达尔塞)最高 3>😃zelda\r\n Link™")
@@ -130,7 +130,7 @@ class LLRegexTests: XCTestCase {
         XCTAssertEqual(all[3].groups[4].matched, "l")
         
         let notFoundGroup = zeldaRegex.matches(in: s).all[1].groups[2]
-        XCTAssertNil(notFoundGroup.matched)
+        XCTAssertEqual(notFoundGroup.matched, "")
         XCTAssertNil(notFoundGroup.range)
     }
     
@@ -205,7 +205,7 @@ class LLRegexTests: XCTestCase {
             var date: Date
             
             date = Date()
-            _ = regex.matches(in: content).all.map { $0.groups[1].matched! }
+            _ = regex.matches(in: content).all.map { $0.groups[1].matched }
             let interval1 = Date().timeIntervalSince(date)
             
             date = Date()
