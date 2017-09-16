@@ -384,7 +384,9 @@ extension Regex {
                 replacement = match.replacement(withTemplate: template)
             }
             
-            replacements.insert((match.range, replacement), at: 0)
+            if let range = match.range {
+                replacements.insert((range, replacement), at: 0)
+            }
         }
         
         var reval = string
@@ -461,7 +463,7 @@ func extractNamedCaptureGroups(in pattern: String, expectedGroupsCount: Int) -> 
     
     guard captureGroups.count + namedCaptureGroups.count == expectedGroupsCount else { return nil }
     
-    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range.lowerBound < $1.range.lowerBound }
+    let allGroups = (captureGroups + namedCaptureGroups).sorted { $0.range!.lowerBound < $1.range!.lowerBound }
     
     var reval = [String: Int]()
     

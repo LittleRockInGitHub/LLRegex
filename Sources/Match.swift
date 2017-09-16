@@ -20,14 +20,21 @@ public protocol MatchProtocol {
     /// The matched string.
     var matched: String { get }
     
+    /// The matched substring.
+    var matchedSubstring: Substring? { get }
+    
     /// The matched range.
-    var range: Range<String.Index> { get }
+    var range: Range<String.Index>? { get }
 }
 
 extension MatchProtocol {
     
     public var matched: String {
-        return String(searched[range])
+        return matchedSubstring.map(String.init) ?? ""
+    }
+    
+    public var matchedSubstring: Substring? {
+        return range.map { searched[$0] }
     }
 }
 
@@ -66,12 +73,8 @@ public struct Match : MatchProtocol {
     public let result: NSTextCheckingResult
     
     init?(searched: String, result: NSTextCheckingResult, regex: Regex) {
-        
-        guard let range = result.range.toRange(in: searched) else { return nil }
-        
         self.searched = searched
         self.result = result
-        self.range = range
         self.regex = regex
     }
     
@@ -79,7 +82,9 @@ public struct Match : MatchProtocol {
     public let regex: Regex
     
     /// The matched range.
-    public let range: Range<String.Index>
+    public var range: Range<String.Index>? {
+        return result.range.toRange(in: searched)
+    }
 }
 
 extension Match {

@@ -152,11 +152,11 @@ extension String {
             
             for (idx, match) in regex.matches(in: self).enumerated() {
                 
-                guard idx < maxSplits else { break }
+                guard idx < maxSplits, let range = match.range else { break }
                 
-                appendRange(current..<match.range.lowerBound)
+                appendRange(current..<range.lowerBound)
                 
-                current = match.range.upperBound
+                current = range.upperBound
             }
         }
         
