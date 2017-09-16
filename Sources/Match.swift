@@ -117,7 +117,13 @@ extension Match {
         // The searched string.
         public var searched: String { return match.searched }
         
-        var nsRange: NSRange { return match.result.range(at: index) }
+        var nsRange: NSRange {
+            #if swift(>=4)
+                return match.result.range(at: index)
+            #else
+                return match.result.rangeAt(index)
+            #endif
+        }
         
         fileprivate init(index: Int, match: Match) {
             self.match = match
