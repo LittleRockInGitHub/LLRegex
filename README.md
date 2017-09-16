@@ -24,14 +24,14 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
 
 - iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+
 - Xcode 8.1+
-- Swift 3.0+
+- Swift 3.2
 
 ## Installation
 
 ### CocoaPods
 
 ```ruby
-pod 'LLRegex', '~> 1.2'
+pod 'LLRegex', '~> 1.3'
 ```
 
 ### Swift Package Manager
@@ -81,8 +81,6 @@ for case let match in subrangeMatches.dropFirst(1) where match.matched != "6789"
     match.matched
 }
 ```
-
-- Important: If the matched range is unable to be converted to `Range<String.Index>`, the match is ignored.
 
 ### Match & Capture Groups
 
