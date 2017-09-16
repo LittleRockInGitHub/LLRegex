@@ -205,7 +205,7 @@ class LLRegexTests: XCTestCase {
             var date: Date
             
             date = Date()
-            let match1 = regex.matches(in: content).all.map { $0.groups[1].matched }
+            let match1 = regex.matches(in: content).all.map { ($0.groups[1].matched) }
             let interval1 = Date().timeIntervalSince(date)
             
             date = Date()
@@ -217,9 +217,10 @@ class LLRegexTests: XCTestCase {
             XCTAssertEqual(match1, match2)
         }
         
-        Swift.print("avg: \(result.reduce(0, +) / Double(result.count))")
+        let ratio = result.reduce(0, +) / Double(result.count)
+        Swift.print("avg: \(ratio)")
         
-        //        XCTAssertLessThan(interval1, interval2 * 10)
+        XCTAssertLessThan(ratio, 2)
     }
     #endif
     

@@ -20,9 +20,6 @@ public protocol MatchProtocol {
     /// The matched string.
     var matched: String { get }
     
-    /// The matched substring.
-    var matchedSubstring: Substring? { get }
-    
     /// The matched range.
     var range: Range<String.Index>? { get }
 }
@@ -30,11 +27,7 @@ public protocol MatchProtocol {
 extension MatchProtocol {
     
     public var matched: String {
-        return matchedSubstring.map(String.init) ?? ""
-    }
-    
-    public var matchedSubstring: Substring? {
-        return range.map { searched[$0] }
+        return range.map { String(searched[$0]) } ?? ""
     }
 }
 
@@ -53,9 +46,6 @@ extension _NSRangeBasedMatch {
     public var matched: String {
         guard nsRange.location != NSNotFound else { return ""}
         return (searched as NSString).substring(with: nsRange) as String
-//        guard let r = Range(self.nsRange) else { return "" }
-//        let utf16Range = String.Index(encodedOffset: r.lowerBound) ..< String.Index(encodedOffset: r.upperBound)
-//        return String(Substring(searched.utf16[utf16Range]))
     }
 }
 
@@ -63,7 +53,7 @@ extension _NSRangeBasedMatch {
 // MARK: Match
 
 /// A type that represents a match searched by regular expression.
-public struct Match : _NSRangeBasedMatch {
+public class Match : _NSRangeBasedMatch {
     
     /// Options for matching
     public struct Options : OptionSetAdapting {
@@ -102,16 +92,18 @@ public struct Match : _NSRangeBasedMatch {
         self.searched = searched
         self.result = result
         self.regex = regex
+        
+        self.groups = CaptureGroups(match: self)
     }
     
     /// The searching regex.
-    public let regex: Regex
+    public let regex: Regex!
+    
+    /// The captures groups.
+    private(set) public var groups: CaptureGroups!
 }
 
 extension Match {
-    
-    /// The captures groups.
-    public var groups: CaptureGroups { return CaptureGroups(match: self) }
     
     
     /// A type thats represents capture group in a match.
@@ -127,14 +119,14 @@ extension Match {
         
         var nsRange: NSRange { return match.result.range(at: index) }
         
-        init(index: Int, match: Match) {
+        fileprivate init(index: Int, match: Match) {
             self.match = match
             self.index = index
         }
     }
     
     /// A collection that represents caputure groups.
-    public struct CaptureGroups : RandomAccessCollection {
+    public class CaptureGroups : RandomAccessCollection {
         
         private let match: Match
         
@@ -150,7 +142,7 @@ extension Match {
             return match.regex.namedCaptureGroupsInfo?[name].map { self[$0] }
         }
         
-        init(match: Match) {
+        fileprivate init(match: Match) {
             self.match = match
         }
         
