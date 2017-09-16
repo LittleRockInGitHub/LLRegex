@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2.1
+- Compatible to Swift 3.2
+
 ## 1.2.0
 - Named capture group
 - `Regex.Options` is not type alias of `NSRegularExpession.Options` any longer.
