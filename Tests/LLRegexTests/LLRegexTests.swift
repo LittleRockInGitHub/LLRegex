@@ -205,14 +205,16 @@ class LLRegexTests: XCTestCase {
             var date: Date
             
             date = Date()
-            _ = regex.matches(in: content).all.map { $0.groups[1].matched }
+            let match1 = regex.matches(in: content).all.map { $0.groups[1].matched }
             let interval1 = Date().timeIntervalSince(date)
             
             date = Date()
             let nsContent: NSString = content as NSString
-            _ = nsRegex.matches(in: content, range: NSRange(0..<nsContent.length)).map({ nsContent.substring(with: $0.range(at: 1)) as String })
+            let match2 = nsRegex.matches(in: content, range: NSRange(0..<nsContent.length)).map({ nsContent.substring(with: $0.range(at: 1)) as String })
             let interval2 = Date().timeIntervalSince(date)
             result.append(interval1 / interval2)
+            
+            XCTAssertEqual(match1, match2)
         }
         
         Swift.print("avg: \(result.reduce(0, +) / Double(result.count))")

@@ -51,9 +51,11 @@ extension _NSRangeBasedMatch {
     }
     
     public var matched: String {
-        guard let r = Range(self.nsRange) else { return "" }
-        let utf16Range = String.Index(encodedOffset: r.lowerBound) ..< String.Index(encodedOffset: r.upperBound)
-        return String(Substring(searched.utf16[utf16Range]))
+        guard nsRange.location != NSNotFound else { return ""}
+        return (searched as NSString).substring(with: nsRange) as String
+//        guard let r = Range(self.nsRange) else { return "" }
+//        let utf16Range = String.Index(encodedOffset: r.lowerBound) ..< String.Index(encodedOffset: r.upperBound)
+//        return String(Substring(searched.utf16[utf16Range]))
     }
 }
 
@@ -141,7 +143,6 @@ extension Match {
         public typealias Index = Int
         
         public subscript(index: Int) -> CaptureGroup {
-            
             return CaptureGroup(index: index, match: match)
         }
         
