@@ -38,10 +38,30 @@ extension MatchProtocol {
     }
 }
 
+
+protocol _NSRangeBasedMatch : MatchProtocol {
+    
+    var nsRange: NSRange { get }
+}
+
+extension _NSRangeBasedMatch {
+    
+    public var range: Range<String.Index>? {
+        return nsRange.toRange(in: searched)
+    }
+    
+    public var matched: String {
+        guard let r = Range(self.nsRange) else { return "" }
+        let utf16Range = String.Index(encodedOffset: r.lowerBound) ..< String.Index(encodedOffset: r.upperBound)
+        return String(Substring(searched.utf16[utf16Range]))
+    }
+}
+
+
 // MARK: Match
 
 /// A type that represents a match searched by regular expression.
-public struct Match : MatchProtocol {
+public struct Match : _NSRangeBasedMatch {
     
     /// Options for matching
     public struct Options : OptionSetAdapting {
@@ -72,6 +92,10 @@ public struct Match : MatchProtocol {
     /// The wrapped NSTextCheckingResult.
     public let result: NSTextCheckingResult
     
+    var nsRange: NSRange {
+        return result.range
+    }
+    
     init?(searched: String, result: NSTextCheckingResult, regex: Regex) {
         self.searched = searched
         self.result = result
@@ -80,11 +104,6 @@ public struct Match : MatchProtocol {
     
     /// The searching regex.
     public let regex: Regex
-    
-    /// The matched range.
-    public var range: Range<String.Index>? {
-        return result.range.toRange(in: searched)
-    }
 }
 
 extension Match {
@@ -94,8 +113,8 @@ extension Match {
     
     
     /// A type thats represents capture group in a match.
-    public struct CaptureGroup : MatchProtocol {
-        
+    public struct CaptureGroup : _NSRangeBasedMatch {
+    
         // The index in the match.
         public let index: Int
         
@@ -104,10 +123,7 @@ extension Match {
         // The searched string.
         public var searched: String { return match.searched }
         
-        // The range in the searched string.
-        public var range: Range<String.Index>? {
-            return match.result.range(at: index).toRange(in: searched)
-        }
+        var nsRange: NSRange { return match.result.range(at: index) }
         
         init(index: Int, match: Match) {
             self.match = match
