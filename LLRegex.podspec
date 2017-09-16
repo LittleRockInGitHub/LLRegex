@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LLRegex'
-  s.version          = '1.2.2-alpha'
+  s.version          = '1.3.0-alpha'
   s.summary          = 'Regular expression library in Swift, wrapping NSRegularExpression.'
   s.homepage         = 'https://github.com/LittleRockInGitHub/LLRegex'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
