@@ -22,16 +22,16 @@ Don't hesitate to try out on [playground](https://github.com/LittleRockInGitHub/
  
 ## Requirements
 
-- iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 8.1+
-- Swift 3.2
+- iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+
+- Xcode 11.3+
+- Swift 5.0+
 
 ## Installation
 
 ### CocoaPods
 
 ```ruby
-pod 'LLRegex', '~> 1.3'
+pod 'LLRegex', '~> 1.4'
 ```
 
 ### Swift Package Manager

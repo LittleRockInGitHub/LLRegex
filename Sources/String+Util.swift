@@ -35,7 +35,7 @@ extension String {
     
     func index(fromUTF16Offset offset: Int) -> String.Index? {
         #if swift(>=3.2)
-            return Index(encodedOffset: offset).samePosition(in: utf16)
+            return String.Index(utf16Offset: offset, in: self)
         #else
             return UTF16View.Index(offset).samePosition(in: self)
         #endif
@@ -43,7 +43,7 @@ extension String {
     
     func utf16Offset(fromIndex index: String.Index) -> Int {
         #if swift(>=3.2)
-            return index.encodedOffset
+            return index.utf16Offset(in: self)
         #else
             return utf16.startIndex.distance(to: index.samePosition(in: utf16))
         #endif
