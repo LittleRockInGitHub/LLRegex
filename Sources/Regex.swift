@@ -155,8 +155,8 @@ extension Regex : Equatable {
 
 extension Regex : Hashable {
     
-    public var hashValue: Int {
-        return pattern.hashValue + options.rawValue.hashValue * 100
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(pattern.hashValue + options.rawValue.hashValue * 100)
     }
 }
 
@@ -275,7 +275,7 @@ extension Match.Iterator {
     
         guard let range = self.range else { return [] }
         
-        return self.regex.regularExpression.matches(in: searched, options: options, range: range).flatMap({ Match(searched: searched, result: $0, regex: regex)
+        return self.regex.regularExpression.matches(in: searched, options: options, range: range).compactMap({ Match(searched: searched, result: $0, regex: regex)
         })
     }
 }

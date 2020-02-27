@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.0
+- Compatible with Swift 5.0
+
 ## 1.3.0
 - Compatible with Swift 4.0
 - `CaptureGroup` conforms to `MatchProtocol`
